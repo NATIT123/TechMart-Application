@@ -26,8 +26,6 @@
         android:text="@string/please_login_to_your_account" />
 
     <EditText
-        android:drawablePadding="@dimen/_10sdp"
-        android:drawableStart="@drawable/baseline_email_24"
         android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
@@ -35,6 +33,8 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/round_back_grey_15"
+        android:drawableStart="@drawable/baseline_email_24"
+        android:drawablePadding="@dimen/_10sdp"
         android:focusable="true"
         android:hint="@string/email"
         android:imeOptions="actionNext"
@@ -52,11 +52,12 @@
         android:background="@drawable/round_back_grey_15">
 
         <EditText
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableStart="@drawable/baseline_lock_24"
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@null"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="@dimen/_10sdp"
             android:hint="@string/password"
             android:imeOptions="actionNext"
             android:inputType="textPassword"
@@ -69,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:src="@drawable/baseline_visibility_24" />
+            android:backgroundTint="@color/LightGrey"
+            android:src="@drawable/baseline_visibility_off_24" />
     </FrameLayout>
 
     <TextView
@@ -89,6 +91,7 @@
         android:animateLayoutChanges="true">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:textStyle="bold"
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,8 +157,8 @@
         android:paddingStart="@dimen/_20sdp">
 
         <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:src="@drawable/google" />
 

@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.student_information_management_application"
+    namespace = "com.example.tech_mart_application"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.student_information_management_application"
+        applicationId = "com.tech_mart_application"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

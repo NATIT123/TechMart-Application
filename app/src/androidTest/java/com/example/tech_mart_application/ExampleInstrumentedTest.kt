@@ -1,4 +1,4 @@
-package com.example.student_information_management_application
+package com.example.tech_mart_application
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.example.student_information_management_application.activities
+package com.example.tech_mart_application.activities
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -15,10 +15,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import com.example.student_information_management_application.R
-import com.example.student_information_management_application.databinding.ActivityOtpactivityBinding
-import com.example.student_information_management_application.utils.Constants.Companion.PHONE_NUMBER
-import com.example.student_information_management_application.utils.Constants.Companion.VERIFICATION_ID
+import com.example.tech_mart_application.databinding.ActivityOtpactivityBinding
+import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
+import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException

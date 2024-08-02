@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Student-Information-Management-Application"
+rootProject.name = "TechMart_Application"
 include(":app")
  

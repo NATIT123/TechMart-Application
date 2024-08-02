@@ -1,13 +1,13 @@
-package com.example.student_information_management_application.activities
+package com.example.tech_mart_application.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import com.example.student_information_management_application.R
-import com.example.student_information_management_application.databinding.ActivitySignUpBinding
+import com.example.tech_mart_application.R
+import com.example.tech_mart_application.databinding.ActivitySignUpBinding
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -23,6 +23,23 @@ class SignUpActivity : AppCompatActivity() {
 
         toggleIconPassword(binding.btnTogglePassword, binding.edtPassword)
         toggleIconPasswordConfirm(binding.btnToggleConfirmPassword, binding.edtConfirmPassword)
+
+
+        //Screen SignIn
+        binding.btnSignIn.setOnClickListener {
+            val intent = Intent(this@SignUpActivity, SignInActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        //Handle Sign Up Account
+        binding.btnSignUp.setOnClickListener {
+            signUpUser()
+        }
+    }
+
+    private fun signUpUser() {
+
     }
 
     private fun toggleIconPassword(buttonIcon: ImageButton, buttonPassword: EditText) {

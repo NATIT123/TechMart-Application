@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "528873123398",
-    "project_id": "student-management-appli-3e7f2",
-    "storage_bucket": "student-management-appli-3e7f2.appspot.com"
+    "project_number": "866428199120",
+    "project_id": "techmart-application",
+    "storage_bucket": "techmart-application.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:528873123398:android:fb859c6f0fad6798afa447",
+        "mobilesdk_app_id": "1:866428199120:android:7a0a8ab7b236737db57ed5",
         "android_client_info": {
-          "package_name": "com.example.student_information_management_application"
+          "package_name": "com.tech_mart_application"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCvwU6LSURXU8mJDu8ImnfGw4xX4G4fMKI"
+          "current_key": "AIzaSyChf7knp_YpbYG_HPw3o8fHcOlIuv0rxw4"
         }
       ],
       "services": {

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightSteelBlue"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".activities.SignUpActivity">
@@ -27,7 +26,6 @@
         android:text="@string/create_a_new_account" />
 
 
-
     <EditText
         android:id="@+id/edtFullName"
         android:layout_width="match_parent"
@@ -36,6 +34,8 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/round_back_grey_15"
+        android:drawableStart="@drawable/baseline_people_24"
+        android:drawablePadding="@dimen/_10sdp"
         android:focusable="true"
         android:hint="@string/full_name"
         android:imeOptions="actionNext"
@@ -52,6 +52,8 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/round_back_grey_15"
+        android:drawableStart="@drawable/baseline_email_24"
+        android:drawablePadding="@dimen/_10sdp"
         android:focusable="true"
         android:hint="@string/email"
         android:imeOptions="actionNext"
@@ -68,6 +70,8 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/round_back_grey_15"
+        android:drawableStart="@drawable/baseline_local_phone_24"
+        android:drawablePadding="@dimen/_10sdp"
         android:focusable="true"
         android:hint="@string/phone"
         android:imeOptions="actionNext"
@@ -88,6 +92,9 @@
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@null"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="@dimen/_10sdp"
             android:hint="@string/password"
             android:imeOptions="actionNext"
             android:inputType="textPassword"
@@ -100,7 +107,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:src="@drawable/baseline_visibility_24" />
+            android:backgroundTint="@color/LightGrey"
+            android:src="@drawable/baseline_visibility_off_24" />
     </FrameLayout>
 
     <FrameLayout
@@ -115,6 +123,9 @@
             android:id="@+id/edtConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@null"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawablePadding="@dimen/_10sdp"
             android:hint="@string/confirm_password"
             android:imeOptions="actionNext"
             android:inputType="textPassword"
@@ -127,7 +138,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:src="@drawable/baseline_visibility_24" />
+            android:backgroundTint="@color/LightGrey"
+            android:src="@drawable/baseline_visibility_off_24" />
     </FrameLayout>
 
 
@@ -144,7 +156,8 @@
             android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:background="@drawable/round_button_blue_15"
-            android:text="@string/sign_up1" />
+            android:text="@string/sign_up1"
+            android:textStyle="bold" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
@@ -154,7 +167,6 @@
 
 
     </FrameLayout>
-
 
 
     <LinearLayout
@@ -168,7 +180,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account"
+            android:text="@string/already_have_an_account"
             android:textColor="@color/LightGrey"
             android:textStyle="bold" />
 
@@ -176,7 +188,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:text="@string/sign_in"
+            android:text="@string/sign_in1"
             android:textColor="@color/DeepSkyBlue"
             android:textStyle="bold" />
     </LinearLayout>

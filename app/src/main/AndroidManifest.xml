@@ -10,13 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.StudentInformationManagementApplication"
+        android:theme="@style/Theme.TechMartApplication"
         tools:targetApi="31">
         <activity
             android:name=".activities.ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.OnBoardingActivity"
+            android:name=".activities.OnboardingActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

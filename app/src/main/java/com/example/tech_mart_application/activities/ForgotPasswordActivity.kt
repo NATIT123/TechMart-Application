@@ -1,15 +1,13 @@
-package com.example.student_information_management_application.activities
+package com.example.tech_mart_application.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.example.student_information_management_application.R
-import com.example.student_information_management_application.databinding.ActivityForgotPasswordBinding
-import com.example.student_information_management_application.utils.Constants.Companion.PHONE_NUMBER
-import com.example.student_information_management_application.utils.Constants.Companion.VERIFICATION_ID
+import com.example.tech_mart_application.databinding.ActivityForgotPasswordBinding
+import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
+import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException

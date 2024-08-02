@@ -1,8 +1,8 @@
-package com.example.student_information_management_application.utils
+package com.example.tech_mart_application.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.example.student_information_management_application.utils.Constants.Companion.KEY_PREFERENCE_NAME
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_PREFERENCE_NAME
 
 class PreferenceManager(private val context: Context) {
     private lateinit var sharedPreferences: SharedPreferences
