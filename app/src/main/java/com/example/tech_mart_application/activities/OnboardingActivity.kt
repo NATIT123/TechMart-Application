@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.viewpager2.widget.ViewPager2
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivityOnBroadingBinding
 import com.example.tech_mart_application.models.SliderInfo
@@ -45,12 +46,22 @@ class OnboardingActivity : AppCompatActivity() {
             onClickButtonNext()
         }
 
+        binding.containerPager.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                if (getCurrentItem() > 0) {
+                    binding.btnBack.visibility = View.VISIBLE
+                } else {
+                    binding.btnBack.visibility = View.INVISIBLE
+                }
+            }
+
+        })
+
     }
 
     @SuppressLint("SetTextI18n")
     private fun onClickButtonNext() {
-        Toast.makeText(this@OnboardingActivity, "Test", Toast.LENGTH_SHORT).show()
-        binding.btnBack.visibility = View.VISIBLE
         if (getCurrentItem() == 3) {
             preferenceManager.putBoolean(IS_STARTED, true)
             val intent = Intent(this@OnboardingActivity, SignInActivity::class.java)
@@ -58,9 +69,6 @@ class OnboardingActivity : AppCompatActivity() {
             startActivity(intent)
         } else {
             binding.containerPager.currentItem = getCurrentItem() + 1
-            if (getCurrentItem() == 3) {
-                binding.tvNext.text = "GET STARTED"
-            }
         }
     }
 
@@ -78,6 +86,7 @@ class OnboardingActivity : AppCompatActivity() {
     }
 
     private fun loadSliderInfo() {
+        binding.btnNext.visibility = View.VISIBLE
         mListSliderInfo.add(SliderInfo(R.drawable.image1, R.string.heading_one, R.string.desc_one))
         mListSliderInfo.add(SliderInfo(R.drawable.image2, R.string.heading_two, R.string.desc_two))
         mListSliderInfo.add(

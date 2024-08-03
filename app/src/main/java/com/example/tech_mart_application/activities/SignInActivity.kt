@@ -4,17 +4,36 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Patterns
+import android.view.View
+import android.widget.Toast
+import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivitySignInBinding
+import com.example.tech_mart_application.utils.Constants
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_EMAIL
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_FULL_NAME
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_IMAGE
+import com.example.tech_mart_application.utils.PreferenceManager
+import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private var showPassword: Boolean = false
+    private lateinit var auth: FirebaseAuth
+    private lateinit var preferenceManager: PreferenceManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        preferenceManager = PreferenceManager(applicationContext)
+        preferenceManager.instance()
+
+
+        auth = FirebaseAuth.getInstance()
 
 
         //Toggle IconPassword
@@ -24,6 +43,19 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this@SignInActivity, SignUpActivity::class.java)
             startActivity(intent)
         }
+
+
+        //Handle Sign In
+        binding.btnSignIn.setOnClickListener {
+            isValidSignIn()
+        }
+
+        //Forgot Password
+        binding.btnForgotPassword.setOnClickListener {
+            val intent = Intent(this@SignInActivity, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 
@@ -44,5 +76,65 @@ class SignInActivity : AppCompatActivity() {
 
             binding.edtPassword.setSelection(binding.edtPassword.text.length)
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this@SignInActivity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun isValidSignIn() {
+        if (binding.edtEmail.text.toString().isEmpty()) {
+            showToast("Please enter Email")
+            return
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.edtEmail.text.toString()).matches()) {
+            showToast("Email not valid")
+            return
+        } else if (binding.edtPassword.text.toString().isEmpty()) {
+            showToast("Please enter Password")
+            return
+        } else if (binding.edtPassword.text.toString().length < 6) {
+            showToast("Password must at least 6 characters")
+            return
+        } else {
+            isLoading(true)
+            signIn()
+        }
+    }
+
+    private fun signIn() {
+        val email = binding.edtEmail.text.toString().trim()
+        val password = binding.edtPassword.text.toString().trim()
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    isLoading(false)
+
+                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
+                    preferenceManager.putString(
+                        Constants.KEY_ID,
+                        "1"
+                    )
+                    preferenceManager.putString(KEY_EMAIL, binding.edtEmail.text.toString())
+                    preferenceManager.putString(
+                        KEY_FULL_NAME,
+                        "name1"
+                    )
+                    preferenceManager.putString(KEY_IMAGE, "image1")
+                    val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    showToast("Login Successfully")
+                } else {
+                    // If sign in fails, display a message to the user.
+                    isLoading(false)
+                    showToast("Email or Password is not correct")
+                }
+            }
+
+    }
+
+    private fun isLoading(isLoading: Boolean) {
+        binding.isLoading = isLoading
     }
 }

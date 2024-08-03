@@ -56,7 +56,7 @@
     <string name="sign_in">Sign In</string>
     <string name="please_login_to_your_account">Please login to your account</string>
     <string name="email">Email</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Forgot Password?</string>
     <string name="password">Password</string>
     <string name="or">Or</string>
     <string name="sign_in_with_google">Sign In with Google</string>
@@ -83,4 +83,7 @@
     <string name="skip">SKIP</string>
     <string name="back">BACK</string>
     <string name="next1">NEXT</string>
+    <string name="spin_to_win_game">Spin To Win Game</string>
+    <string name="super_easy">Super Easy!</string>
+    <string name="paper">paper</string>
 </resources>

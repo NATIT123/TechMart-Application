@@ -20,13 +20,13 @@
         android:textStyle="bold" />
 
     <FrameLayout
-        android:clickable="true"
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:visibility="gone"
-        android:focusable="true">
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="invisible">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -34,10 +34,10 @@
             android:src="@drawable/ellipse1" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_10sdp"
+            android:gravity="center"
             android:text="@string/back"
             android:textColor="@color/White"
             android:textSize="@dimen/_15sdp"
@@ -47,31 +47,34 @@
 
 
     <FrameLayout
-        android:clickable="true"
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:clickable="true"
         android:focusable="true">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:src="@drawable/ellipse2" />
 
         <TextView
             android:id="@+id/tvNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/_20sdp"
+            android:clickable="false"
+            android:gravity="center"
             android:text="@string/next1"
             android:textColor="@color/White"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold" />
 
     </FrameLayout>
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/container_pager"
