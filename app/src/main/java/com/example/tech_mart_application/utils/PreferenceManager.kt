@@ -32,6 +32,7 @@ class PreferenceManager(private val context: Context) {
         return sharedPreferences.getString(key, null)
     }
 
+
     fun clear() {
         editor.clear()
         editor.apply()

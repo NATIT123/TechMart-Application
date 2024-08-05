@@ -1,21 +1,28 @@
 package com.example.tech_mart_application.activities
 
+import android.app.appsearch.BatchResultCallback
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import at.favre.lib.crypto.bcrypt.BCrypt
 import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivitySignInBinding
 import com.example.tech_mart_application.utils.Constants
-import com.example.tech_mart_application.utils.Constants.Companion.KEY_EMAIL
-import com.example.tech_mart_application.utils.Constants.Companion.KEY_FULL_NAME
-import com.example.tech_mart_application.utils.Constants.Companion.KEY_IMAGE
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_IMAGE
+import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
+import com.toxicbakery.bcrypt.Bcrypt
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 class SignInActivity : AppCompatActivity() {
 
@@ -92,13 +99,25 @@ class SignInActivity : AppCompatActivity() {
         } else if (binding.edtPassword.text.toString().isEmpty()) {
             showToast("Please enter Password")
             return
-        } else if (binding.edtPassword.text.toString().length < 6) {
-            showToast("Password must at least 6 characters")
-            return
         } else {
             isLoading(true)
             signIn()
         }
+    }
+
+    @Throws(NoSuchAlgorithmException::class)
+    fun hashPassword(password: String): String {
+        val md = MessageDigest.getInstance("SHA-512")
+        md.reset()
+        md.update(password.toByteArray())
+        val mdArray = md.digest()
+        val sb = StringBuilder(mdArray.size * 2)
+        for (b in mdArray) {
+            val v = b.toInt() and 0xff
+            if (v < 16) sb.append('0')
+            sb.append(Integer.toHexString(v))
+        }
+        return sb.toString()
     }
 
     private fun signIn() {
@@ -110,17 +129,23 @@ class SignInActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     isLoading(false)
 
+                    val passwordHashed = hashPassword(password)
+
+                    preferenceManager.putString(
+                        Constants.KEY_USER_PASSWORD, passwordHashed
+                    )
+
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                     preferenceManager.putString(
-                        Constants.KEY_ID,
+                        Constants.KEY_USER_ID,
                         "1"
                     )
-                    preferenceManager.putString(KEY_EMAIL, binding.edtEmail.text.toString())
+                    preferenceManager.putString(KEY_USER_EMAIL, binding.edtEmail.text.toString())
                     preferenceManager.putString(
-                        KEY_FULL_NAME,
+                        KEY_USER_FULL_NAME,
                         "name1"
                     )
-                    preferenceManager.putString(KEY_IMAGE, "image1")
+                    preferenceManager.putString(KEY_USER_IMAGE, "image1")
                     val intent = Intent(this@SignInActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)

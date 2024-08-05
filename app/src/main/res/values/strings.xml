@@ -86,4 +86,7 @@
     <string name="spin_to_win_game">Spin To Win Game</string>
     <string name="super_easy">Super Easy!</string>
     <string name="paper">paper</string>
+    <string name="change_password">Change Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
 </resources>

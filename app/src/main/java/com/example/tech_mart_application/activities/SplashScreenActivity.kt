@@ -24,7 +24,10 @@ class SplashScreenActivity : AppCompatActivity() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             if (preferenceManager.getBoolean(IS_STARTED)) {
-                goToSignInActivity()
+                val intent = Intent(this@SplashScreenActivity, ChangePasswordActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+//                goToSignInActivity()
             } else {
                 goToOnBoardingActivity()
             }
@@ -42,4 +45,6 @@ class SplashScreenActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
+
+
 }

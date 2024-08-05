@@ -99,4 +99,9 @@ dependencies {
 
     //Circle Indicator
     implementation("me.relex:circleindicator:2.1.6")
+
+    //Hash Password
+    implementation("com.ToxicBakery.library.bcrypt:bcrypt:1.0.9")
+
+    implementation("at.favre.lib:bcrypt:v0.10.2")
 }
