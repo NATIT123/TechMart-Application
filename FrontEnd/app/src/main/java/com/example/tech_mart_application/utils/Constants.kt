@@ -15,5 +15,9 @@ class Constants {
         const val KEY_USER_ID = "id"
         const val KEY_IS_SIGNED_IN = "signedIn"
         const val SALT_ROUNDS = 12
+        const val OPTION_FORGOT_PASSWORD = 10
+        const val OPTION_CHANGE_PASSWORD = 20
+        const val KEY_FORGOT_PASSWORD = "KeyForgotPassword"
+        const val KEY_CHANGE_PASSWORD = "KeyChangePassword"
     }
 }

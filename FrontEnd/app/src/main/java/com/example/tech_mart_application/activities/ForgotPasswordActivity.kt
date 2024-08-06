@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import io.michaelrocks.libphonenumber.android.NumberParseException
+import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import java.util.concurrent.TimeUnit
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -44,6 +46,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
             ).show()
             binding.progressBar.visibility = View.GONE
             binding.btnGetOTP.visibility = View.VISIBLE
+        } else if (!isValidPhoneNumber(phoneNumber)) {
+            Toast.makeText(
+                this@ForgotPasswordActivity,
+                "Phone number is not valid",
+                Toast.LENGTH_SHORT
+            ).show()
+            binding.progressBar.visibility = View.GONE
+            binding.btnGetOTP.visibility = View.VISIBLE
         } else {
 
             val options = PhoneAuthOptions.newBuilder(auth)
@@ -67,7 +77,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                             .show()
                         val intent = Intent(this@ForgotPasswordActivity, OTPActivity::class.java)
                         intent.putExtra(PHONE_NUMBER, phoneNumber)
-                        intent.putExtra(VERIFICATION_ID, phoneNumber)
+                        intent.putExtra(VERIFICATION_ID, verificationId)
                         startActivity(intent)
                     }
 
@@ -112,5 +122,16 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 }
             }
     }
+
+    private fun isValidPhoneNumber(phoneNumber: String): Boolean {
+        val phoneNumberUtil = PhoneNumberUtil.createInstance(applicationContext)
+        return try {
+            phoneNumberUtil.parse(phoneNumber, "VN")
+            true
+        } catch (e: NumberParseException) {
+            false
+        }
+    }
+
 
 }

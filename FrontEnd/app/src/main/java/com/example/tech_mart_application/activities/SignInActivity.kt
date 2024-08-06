@@ -1,28 +1,27 @@
 package com.example.tech_mart_application.activities
 
-import android.app.appsearch.BatchResultCallback
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.util.Patterns
-import android.view.View
 import android.widget.Toast
-import at.favre.lib.crypto.bcrypt.BCrypt
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivitySignInBinding
 import com.example.tech_mart_application.utils.Constants
-import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_IMAGE
 import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
 import com.toxicbakery.bcrypt.Bcrypt
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 
 class SignInActivity : AppCompatActivity() {
 
@@ -105,20 +104,6 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    @Throws(NoSuchAlgorithmException::class)
-    fun hashPassword(password: String): String {
-        val md = MessageDigest.getInstance("SHA-512")
-        md.reset()
-        md.update(password.toByteArray())
-        val mdArray = md.digest()
-        val sb = StringBuilder(mdArray.size * 2)
-        for (b in mdArray) {
-            val v = b.toInt() and 0xff
-            if (v < 16) sb.append('0')
-            sb.append(Integer.toHexString(v))
-        }
-        return sb.toString()
-    }
 
     private fun signIn() {
         val email = binding.edtEmail.text.toString().trim()
@@ -129,11 +114,18 @@ class SignInActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     isLoading(false)
 
-                    val passwordHashed = hashPassword(password)
+                    val passwordHashed = Bcrypt.hash(password, SALT_ROUNDS)
 
-                    preferenceManager.putString(
-                        Constants.KEY_USER_PASSWORD, passwordHashed
-                    )
+                    runBlocking {
+                        val file = File(filesDir, "my_file.bin")
+                        withContext(Dispatchers.IO) {
+                            FileOutputStream(file).use { output ->
+                                output.write(passwordHashed)
+                            }
+                        }
+                    }
+
+
 
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                     preferenceManager.putString(

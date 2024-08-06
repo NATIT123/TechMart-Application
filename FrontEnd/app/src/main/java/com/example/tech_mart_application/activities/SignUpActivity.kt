@@ -13,6 +13,7 @@ import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivitySignUpBinding
 import com.example.tech_mart_application.models.User
+import com.example.tech_mart_application.utils.Constants
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_COLLECTION_USERS
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_IS_SIGNED_IN
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
@@ -23,6 +24,11 @@ import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
 import com.toxicbakery.bcrypt.Bcrypt
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import java.io.File
+import java.io.FileOutputStream
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -136,11 +142,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun signUp() {
         isLoading(true)
-        val user = User(
-            email = binding.edtEmail.text.toString().trim(),
-            phone = binding.edtPhone.text.toString().trim(),
-            fullName = binding.edtFullName.text.toString().trim()
-        )
 
         auth.createUserWithEmailAndPassword(
             binding.edtEmail.text.toString().trim(),
@@ -153,9 +154,22 @@ class SignUpActivity : AppCompatActivity() {
                         binding.edtPassword.text.toString().trim(),
                         SALT_ROUNDS
                     )
-                    preferenceManager.putString(
-                        KEY_USER_PASSWORD, passwordHashed.toString()
+
+                    val user = User(
+                        email = binding.edtEmail.text.toString().trim(),
+                        phone = binding.edtPhone.text.toString().trim(),
+                        fullName = binding.edtFullName.text.toString().trim(),
+                        password = passwordHashed
                     )
+
+                    runBlocking {
+                        val file = File(filesDir, "my_file.bin")
+                        withContext(Dispatchers.IO) {
+                            FileOutputStream(file).use { output ->
+                                output.write(passwordHashed)
+                            }
+                        }
+                    }
                     preferenceManager.putString(KEY_USER_EMAIL, binding.edtEmail.text.toString());
                     preferenceManager.putBoolean(KEY_IS_SIGNED_IN, true)
                     preferenceManager.putString(KEY_USER_ID, "1")

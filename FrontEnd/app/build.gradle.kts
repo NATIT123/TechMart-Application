@@ -103,5 +103,7 @@ dependencies {
     //Hash Password
     implementation("com.ToxicBakery.library.bcrypt:bcrypt:1.0.9")
 
-    implementation("at.favre.lib:bcrypt:v0.10.2")
+    //Phone Number
+    implementation("io.michaelrocks:libphonenumber-android:8.13.35")
+
 }

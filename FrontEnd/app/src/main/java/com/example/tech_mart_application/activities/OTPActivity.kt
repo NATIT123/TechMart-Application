@@ -16,6 +16,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.example.tech_mart_application.databinding.ActivityOtpactivityBinding
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_FORGOT_PASSWORD
+import com.example.tech_mart_application.utils.Constants.Companion.OPTION_FORGOT_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
 import com.google.firebase.FirebaseException
@@ -209,6 +211,7 @@ class OTPActivity : AppCompatActivity() {
                     val intent =
                         Intent(this@OTPActivity, ChangePasswordActivity::class.java)
                     intent.putExtra(PHONE_NUMBER, mPhoneNumber)
+                    intent.putExtra(KEY_FORGOT_PASSWORD, OPTION_FORGOT_PASSWORD)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
