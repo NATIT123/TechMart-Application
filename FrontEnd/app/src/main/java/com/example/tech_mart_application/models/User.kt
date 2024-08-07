@@ -6,5 +6,5 @@ class User(
     var email: String,
     var phone: String,
     var fullName: String,
-    var password: ByteArray
+    var password: String
 )

@@ -1,13 +1,19 @@
 package com.example.tech_mart_application.Retrofit
 
 
+import com.example.tech_mart_application.models.DataResponse
+import com.example.tech_mart_application.models.User
 import com.example.tech_mart_application.utils.Constants.Companion.BASE_URL
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Body
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 
 interface ApiService {
@@ -27,6 +33,11 @@ interface ApiService {
     }
 
 
+    @POST("user/login")
+    fun loginUser(@Body user: User): Call<DataResponse>
+
+    @POST("user/register")
+    fun registerUser(@Body user: User): Call<DataResponse>
 
 
 }
