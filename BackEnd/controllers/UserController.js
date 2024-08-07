@@ -86,7 +86,7 @@ const phoneIsExist = async (req, res) => {
     } else {
       return res.send({
         status: "ok",
-        data: "Phone is exist",
+        data: `Phone is exist:${user._id.toString()}`,
       });
     }
   } catch (err) {
@@ -98,7 +98,7 @@ const changePassword = async (req, res) => {
   const { id } = req.params;
   const { password } = req.query;
   try {
-    const user = await User.findOne({ _id: id });
+    const user = await User.findOne({ _id: mongoose.Types.ObjectId(id) });
     if (!user) {
       return res.send({
         status: "notok",

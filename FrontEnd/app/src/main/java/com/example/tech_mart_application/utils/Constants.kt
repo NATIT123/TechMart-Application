@@ -11,6 +11,7 @@ class Constants {
         const val KEY_USER_FULL_NAME = "FullName"
         const val KEY_USER_EMAIL = "Email"
         const val KEY_USER_IMAGE = "Image"
+        const val KEY_USER_PASSWORD = "password"
         const val KEY_USER_ID = "id"
         const val KEY_IS_SIGNED_IN = "signedIn"
         const val SALT_ROUNDS = 12

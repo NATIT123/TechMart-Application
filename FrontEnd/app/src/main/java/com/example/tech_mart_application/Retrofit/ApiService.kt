@@ -43,10 +43,13 @@ interface ApiService {
     fun registerUser(@Body user: User): Call<DataResponse>
 
     @GET("user/phoneExist")
-    fun isPhoneExist(@Query("phone") phone: String):Call<DataResponse>
+    fun isPhoneExist(@Query("phone") phone: String): Call<DataResponse>
 
     @GET("user/changePassword")
-    fun changePassword(@Path("id") id:String,@Body user:User):Call<DataResponse>
+    fun changePassword(
+        @Path("id") id: String,
+        @Query("password") password: String
+    ): Call<DataResponse>
 
 
 }

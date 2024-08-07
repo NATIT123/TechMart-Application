@@ -1,9 +1,9 @@
 package com.example.tech_mart_application.activities
 
 import android.content.Intent
+import android.credentials.CredentialManager
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +20,7 @@ import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_IMAGE
 import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
+import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.toxicbakery.bcrypt.Bcrypt
 import kotlinx.coroutines.Dispatchers
@@ -31,12 +32,14 @@ import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
 
+
 class SignInActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignInBinding
     private var showPassword: Boolean = false
     private lateinit var auth: FirebaseAuth
     private lateinit var preferenceManager: PreferenceManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
@@ -47,7 +50,10 @@ class SignInActivity : AppCompatActivity() {
         preferenceManager.instance()
 
 
+
         auth = FirebaseAuth.getInstance()
+
+
 
 
         //Toggle IconPassword
@@ -193,5 +199,9 @@ class SignInActivity : AppCompatActivity() {
     private fun handleDataError(dataResponse: DataResponse) {
         isLoading(false)
         showToast(dataResponse.data)
+    }
+
+    private fun handleGoogleSignIn() {
+
     }
 }

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -17,6 +18,8 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.example.tech_mart_application.databinding.ActivityOtpactivityBinding
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_FORGOT_PASSWORD
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.OPTION_FORGOT_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
@@ -75,12 +78,14 @@ class OTPActivity : AppCompatActivity() {
         }
 
         binding.btnVerifyOTP.setOnClickListener {
+            isLoading(true)
             val generateOTP =
                 "${binding.edtInputCode1.text}${binding.edtInputCode2.text}${binding.edtInputCode3.text}${binding.edtInputCode4.text}${binding.edtInputCode5.text}${binding.edtInputCode6.text}"
 
             if (generateOTP.length == 6) {
                 verifyOTP(generateOTP)
             } else {
+                isLoading(false)
                 Toast.makeText(this@OTPActivity, "Please Enter your OTP", Toast.LENGTH_SHORT).show()
             }
         }
@@ -204,19 +209,25 @@ class OTPActivity : AppCompatActivity() {
         signInWithPhoneAuthCredential(credential)
     }
 
+    private fun isLoading(isLoading: Boolean) {
+        binding.isLoading = isLoading
+    }
+
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         mAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    isLoading(false)
                     val intent =
                         Intent(this@OTPActivity, ChangePasswordActivity::class.java)
                     intent.putExtra(PHONE_NUMBER, mPhoneNumber)
                     intent.putExtra(KEY_FORGOT_PASSWORD, OPTION_FORGOT_PASSWORD)
+                    intent.putExtra(KEY_USER_ID, intent.getStringExtra(KEY_USER_ID))
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
-
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        isLoading(false)
                         Toast.makeText(
                             this@OTPActivity,
                             (task.exception as FirebaseAuthInvalidCredentialsException).message.toString(),

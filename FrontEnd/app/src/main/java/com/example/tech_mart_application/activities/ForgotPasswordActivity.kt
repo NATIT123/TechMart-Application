@@ -3,6 +3,7 @@ package com.example.tech_mart_application.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.tech_mart_application.MainActivity
@@ -10,6 +11,7 @@ import com.example.tech_mart_application.Retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivityForgotPasswordBinding
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.utils.Constants
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
 import com.google.firebase.FirebaseException
@@ -75,7 +77,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private fun signInWithPhoneAuthCredential(
         credential: PhoneAuthCredential,
-        phoneNumber: String
+        phoneNumber: String,
+        dataResponse: DataResponse
     ) {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
@@ -83,11 +86,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
                     val intent =
                         Intent(this@ForgotPasswordActivity, ChangePasswordActivity::class.java)
                     intent.putExtra(PHONE_NUMBER, phoneNumber)
+                    intent.putExtra(KEY_USER_ID, dataResponse.data.split(':')[1])
+                    Log.d("MyApp", dataResponse.data.split(':')[1])
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {
 
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        Log.d("MyApp", dataResponse.data.split(':')[1])
                         Toast.makeText(
                             this@ForgotPasswordActivity,
                             (task.exception as FirebaseAuthInvalidCredentialsException).message.toString(),
@@ -110,8 +116,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 
 
-    private fun handlePhoneExistApi(phoneNumber:String){
-        ApiService.apiService.isPhoneExist(phoneNumber).enqueue(object :Callback<DataResponse>{
+    private fun handlePhoneExistApi(phoneNumber: String) {
+        ApiService.apiService.isPhoneExist(phoneNumber).enqueue(object : Callback<DataResponse> {
             override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
                 if (response.isSuccessful) {
                     val body = response.body()
@@ -123,10 +129,15 @@ class ForgotPasswordActivity : AppCompatActivity() {
                                     .setPhoneNumber("+84$phoneNumber") // Phone number to verify
                                     .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
                                     .setActivity(this@ForgotPasswordActivity) // Activity (for callback binding)
-                                    .setCallbacks(object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                                    .setCallbacks(object :
+                                        PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                                         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
                                             isLoading(false)
-                                            signInWithPhoneAuthCredential(credential, phoneNumber)
+                                            signInWithPhoneAuthCredential(
+                                                credential,
+                                                phoneNumber,
+                                                body
+                                            )
                                         }
 
                                         override fun onCodeSent(
@@ -134,10 +145,19 @@ class ForgotPasswordActivity : AppCompatActivity() {
                                             forceResendingToken: PhoneAuthProvider.ForceResendingToken
                                         ) {
                                             isLoading(false)
-                                            Toast.makeText(this@ForgotPasswordActivity, "OTP Sent", Toast.LENGTH_SHORT)
+                                            Toast.makeText(
+                                                this@ForgotPasswordActivity,
+                                                "OTP Sent",
+                                                Toast.LENGTH_SHORT
+                                            )
                                                 .show()
-                                            val intent = Intent(this@ForgotPasswordActivity, OTPActivity::class.java)
+                                            val intent = Intent(
+                                                this@ForgotPasswordActivity,
+                                                OTPActivity::class.java
+                                            )
                                             intent.putExtra(PHONE_NUMBER, phoneNumber)
+                                            intent.putExtra(KEY_USER_ID, body.data.split(':')[1])
+                                            Log.d("MyApp", body.data.split(':')[1])
                                             intent.putExtra(VERIFICATION_ID, verificationId)
                                             startActivity(intent)
                                         }
@@ -165,8 +185,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
                             }
                         }
                     }
-                }
-                else{
+                } else {
                     isLoading(false)
                     showToast(response.message())
                 }
