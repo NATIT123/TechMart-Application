@@ -9,8 +9,12 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
+import com.example.tech_mart_application.Retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivityChangePasswordBinding
+import com.example.tech_mart_application.models.DataResponse
+import com.example.tech_mart_application.models.User
 import com.example.tech_mart_application.utils.Constants
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_FORGOT_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
@@ -27,6 +31,9 @@ import com.toxicbakery.bcrypt.Bcrypt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -185,54 +192,19 @@ class ChangePasswordActivity : AppCompatActivity() {
     private fun changeOptionChangePassword() {
         val oldPassword = binding.edtOldPassword.text.toString()
         val newPassword = binding.edtNewPassword.text.toString()
-        val email = preferenceManager.getString(KEY_USER_EMAIL)
 
-        val user = Firebase.auth.currentUser!!
-        val credential = EmailAuthProvider
-            .getCredential(email!!, oldPassword)
-        //Sign In User
-        auth.signInWithEmailAndPassword(email, oldPassword)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    //If Success authenticate account change password
-                    user.reauthenticate(credential)
-                        .addOnCompleteListener {
-                            showToast("User re-authenticated.")
-                            user.updatePassword(newPassword)
-                                .addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
-                                        val passwordHashed =
-                                            Bcrypt.hash(newPassword, Constants.SALT_ROUNDS)
-                                        runBlocking {
-                                            val file = File(filesDir, "my_file.bin")
-                                            withContext(Dispatchers.IO) {
-                                                FileOutputStream(file).use { output ->
-                                                    output.write(passwordHashed)
-                                                }
-                                            }
-                                        }
-                                        navigateSignIn()
-                                    } else {
-                                        Log.d("MyApp", task.result.toString())
-                                        showToast(task.result.toString())
-                                    }
-                                }
-                        }
-                        .addOnFailureListener {
-                            isLoading(false)
-                            Log.d("MyApp", it.message.toString())
-                            showToast(it.message.toString())
-                        }
-                } else {
-                    isLoading(false)
-                    Toast.makeText(
-                        this@ChangePasswordActivity,
-                        task.result.toString(),
-                        Toast.LENGTH_SHORT
-                    )
-                        .show()
+        val passwordHashed =
+            Bcrypt.hash(newPassword, Constants.SALT_ROUNDS)
+        runBlocking {
+            val file = File(filesDir, "my_file.bin")
+            withContext(Dispatchers.IO) {
+                FileOutputStream(file).use { output ->
+                    output.write(passwordHashed)
                 }
             }
+        }
+        //Sign In User
+
     }
 
     private fun changePassword() {
@@ -269,6 +241,78 @@ class ChangePasswordActivity : AppCompatActivity() {
 
         return byteArray
 
+    }
+
+
+    private fun handleChangePasswordApi(id:String,user: User){
+        ApiService.apiService.changePassword(id,user).enqueue(object :Callback<DataResponse>{
+            override fun onResponse(call: Call<DataResponse>, response: Response<DataResponse>) {
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body != null) {
+                        when (body.status) {
+                            "ok" -> {
+                                isLoading(false)
+
+                                val passwordHashed = Bcrypt.hash(user.password,
+                                    Constants.SALT_ROUNDS
+                                )
+
+                                runBlocking {
+                                    val file = File(filesDir, "my_file.bin")
+                                    withContext(Dispatchers.IO) {
+                                        FileOutputStream(file).use { output ->
+                                            output.write(passwordHashed)
+                                        }
+                                    }
+                                }
+
+
+
+                                preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
+                                preferenceManager.putString(
+                                    Constants.KEY_USER_ID, body.data.split(':')[1]
+                                )
+                                preferenceManager.putString(
+                                    KEY_USER_EMAIL,
+                                    binding.edtEmail.text.toString()
+                                )
+                                preferenceManager.putString(
+                                    Constants.KEY_USER_FULL_NAME,
+                                    body.data.split(':')[2]
+                                )
+                                preferenceManager.putString(Constants.KEY_USER_IMAGE, body.data.split(':')[3])
+                                val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                startActivity(intent)
+                                showToast("Login Successfully")
+                            }
+
+                            "notok" -> {
+                                handleDataError(body)
+                            }
+
+                            else -> {
+                                handleDataError(body)
+                            }
+                        }
+                    } else {
+                        isLoading(false)
+                        showToast(response.message())
+                    }
+                }
+            }
+
+            override fun onFailure(p0: Call<DataResponse>, p1: Throwable) {
+
+            }
+
+        })
+    }
+
+    private fun handleDataError(dataResponse: DataResponse) {
+        isLoading(false)
+        showToast(dataResponse.data)
     }
 
 }

@@ -156,7 +156,6 @@ class SignInActivity : AppCompatActivity() {
                                     KEY_USER_FULL_NAME,
                                     body.data.split(':')[2]
                                 )
-                                Log.d("MyApp",body.data.split(':')[2])
                                 preferenceManager.putString(KEY_USER_IMAGE, body.data.split(':')[3])
                                 val intent = Intent(this@SignInActivity, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)

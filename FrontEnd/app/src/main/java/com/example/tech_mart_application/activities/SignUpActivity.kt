@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.util.Base64
+import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
 import android.widget.ImageButton
@@ -28,6 +29,8 @@ import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
 import com.google.firebase.auth.FirebaseAuth
 import com.toxicbakery.bcrypt.Bcrypt
+import io.michaelrocks.libphonenumber.android.NumberParseException
+import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
@@ -129,7 +132,12 @@ class SignUpActivity : AppCompatActivity() {
         } else if (binding.edtPhone.text.toString().trim().isEmpty()) {
             showToast("Please Enter phone")
             return false
-        } else if (binding.edtPassword.text.toString().length < 6) {
+        }
+        else if(!isValidPhoneNumber(binding.edtPhone.text.toString())){
+            showToast("Phone is not valid")
+            return false
+        }
+        else if (binding.edtPassword.text.toString().length < 6) {
             showToast("Password must have at least 6 characters")
             return false
         } else if (binding.edtPassword.text.toString().trim().isEmpty()) {
@@ -220,6 +228,7 @@ class SignUpActivity : AppCompatActivity() {
                                 );
                                 preferenceManager.putBoolean(KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(KEY_USER_ID, body.data.split(':')[1])
+                                Log.d("MyApp", body.data.split(':')[1])
                                 preferenceManager.putString(
                                     KEY_USER_FULL_NAME,
                                     binding.edtFullName.text.toString()
@@ -263,5 +272,16 @@ class SignUpActivity : AppCompatActivity() {
         isLoading(false)
         showToast(dataResponse.data)
     }
+
+    private fun isValidPhoneNumber(phoneNumber: String): Boolean {
+        val phoneNumberUtil = PhoneNumberUtil.createInstance(applicationContext)
+        return try {
+            phoneNumberUtil.parse(phoneNumber, "VN")
+            true
+        } catch (e: NumberParseException) {
+            false
+        }
+    }
+
 
 }
