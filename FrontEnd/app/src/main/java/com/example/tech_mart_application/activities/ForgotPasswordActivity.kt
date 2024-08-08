@@ -14,6 +14,7 @@ import com.example.tech_mart_application.utils.Constants
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
+import com.example.tech_mart_application.utils.PreferenceManager
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -37,10 +38,14 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var preferenceManager: PreferenceManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        preferenceManager = PreferenceManager(applicationContext)
+        preferenceManager.instance()
 
         auth = FirebaseAuth.getInstance()
 
@@ -156,8 +161,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
                                                 OTPActivity::class.java
                                             )
                                             intent.putExtra(PHONE_NUMBER, phoneNumber)
-                                            intent.putExtra(KEY_USER_ID, body.data.split(':')[1])
-                                            Log.d("MyApp", body.data.split(':')[1])
+                                            preferenceManager.putString(
+                                                KEY_USER_ID,
+                                                body.data.split(':')[1]
+                                            )
                                             intent.putExtra(VERIFICATION_ID, verificationId)
                                             startActivity(intent)
                                         }

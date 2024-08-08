@@ -19,5 +19,6 @@ class Constants {
         const val OPTION_CHANGE_PASSWORD = 20
         const val KEY_FORGOT_PASSWORD = "KeyForgotPassword"
         const val KEY_CHANGE_PASSWORD = "KeyChangePassword"
+        const val KEY_RC_SIGN_IN = 20
     }
 }

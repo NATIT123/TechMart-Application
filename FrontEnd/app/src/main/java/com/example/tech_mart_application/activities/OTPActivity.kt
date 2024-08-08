@@ -53,6 +53,8 @@ class OTPActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
+        Log.d("MyApp","${intent.getStringExtra(KEY_USER_ID)} OTP")
+
 
         getData()
 
@@ -222,7 +224,6 @@ class OTPActivity : AppCompatActivity() {
                         Intent(this@OTPActivity, ChangePasswordActivity::class.java)
                     intent.putExtra(PHONE_NUMBER, mPhoneNumber)
                     intent.putExtra(KEY_FORGOT_PASSWORD, OPTION_FORGOT_PASSWORD)
-                    intent.putExtra(KEY_USER_ID, intent.getStringExtra(KEY_USER_ID))
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 } else {

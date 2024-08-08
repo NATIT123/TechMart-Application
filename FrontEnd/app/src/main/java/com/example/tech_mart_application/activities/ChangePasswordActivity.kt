@@ -87,16 +87,13 @@ class ChangePasswordActivity : AppCompatActivity() {
     }
 
     private fun loadOption() {
+        id = preferenceManager.getString(KEY_USER_ID)!!
         if (intent.getIntExtra(KEY_FORGOT_PASSWORD, 0) == OPTION_FORGOT_PASSWORD) {
             binding.layoutOldPassword.visibility = View.GONE
             option = OPTION_FORGOT_PASSWORD
-            id = intent.getStringExtra(KEY_USER_ID)!!
         } else {
-            id = preferenceManager.getString(KEY_USER_ID)!!
             option = OPTION_CHANGE_PASSWORD
         }
-
-        Log.d("MyApp", id)
     }
 
     private fun toggleIconPassword(buttonIcon: ImageButton, buttonPassword: EditText) {

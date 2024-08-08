@@ -132,12 +132,10 @@ class SignUpActivity : AppCompatActivity() {
         } else if (binding.edtPhone.text.toString().trim().isEmpty()) {
             showToast("Please Enter phone")
             return false
-        }
-        else if(!isValidPhoneNumber(binding.edtPhone.text.toString())){
+        } else if (!isValidPhoneNumber(binding.edtPhone.text.toString())) {
             showToast("Phone is not valid")
             return false
-        }
-        else if (binding.edtPassword.text.toString().length < 6) {
+        } else if (binding.edtPassword.text.toString().length < 6) {
             showToast("Password must have at least 6 characters")
             return false
         } else if (binding.edtPassword.text.toString().trim().isEmpty()) {
@@ -210,7 +208,7 @@ class SignUpActivity : AppCompatActivity() {
                         when (body.status) {
                             "ok" -> {
                                 val passwordHashed = Bcrypt.hash(
-                                    binding.edtPassword.text.toString().trim(),
+                                    user.password,
                                     SALT_ROUNDS
                                 )
                                 runBlocking {
@@ -224,14 +222,14 @@ class SignUpActivity : AppCompatActivity() {
 
                                 preferenceManager.putString(
                                     KEY_USER_EMAIL,
-                                    binding.edtEmail.text.toString()
+                                    user.email
                                 );
                                 preferenceManager.putBoolean(KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(KEY_USER_ID, body.data.split(':')[1])
                                 Log.d("MyApp", body.data.split(':')[1])
                                 preferenceManager.putString(
                                     KEY_USER_FULL_NAME,
-                                    binding.edtFullName.text.toString()
+                                    user.fullName
                                 )
                                 preferenceManager.putString(KEY_USER_IMAGE, user.image)
                                 val intent = Intent(this@SignUpActivity, MainActivity::class.java)

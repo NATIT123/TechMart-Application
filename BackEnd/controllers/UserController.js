@@ -43,6 +43,39 @@ const registerUser = async (req, res) => {
   }
 };
 
+const resgisterUserByGoogle = async (req, res) => {
+  const { fullName, email, phone, password, image } = req.body;
+
+  let encryptPassword;
+  await bcrypt
+    .genSalt(saltRounds)
+    .then((salt) => {
+      return bcrypt.hash(password, salt);
+    })
+    .then((hash) => {
+      encryptPassword = hash;
+    })
+    .catch((err) => console.error(err.message));
+
+  try {
+    const userObject = {
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      password: encryptPassword,
+      image,
+    };
+    const savedUser = await User.collection.insertOne(userObject);
+    console.log(savedUser.insertedId.toString());
+    res.send({
+      status: "ok",
+      data: `User created successfully:${savedUser.insertedId.toString()}`,
+    });
+  } catch (err) {
+    res.send({ status: "error", data: err.toString() });
+  }
+};
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -98,7 +131,9 @@ const changePassword = async (req, res) => {
   const { id } = req.params;
   const { password } = req.query;
   try {
-    const user = await User.findOne({ _id: mongoose.Types.ObjectId(id) });
+    const user = await User.findOne({
+      _id: mongoose.Types.ObjectId.createFromHexString(id),
+    });
     if (!user) {
       return res.send({
         status: "notok",
@@ -116,8 +151,40 @@ const changePassword = async (req, res) => {
     );
     res.send({ status: "ok", data: "Change Password Successfully" });
   } catch (err) {
-    res.send({ status: "error", err: err.message });
+    res.send({ status: "error", data: err.message });
   }
 };
 
-module.exports = { registerUser, loginUser, phoneIsExist, changePassword };
+const detailUser = async (req, res) => {
+  const { email } = req.query;
+  const user = await User.findOne({ email: email });
+  try {
+    if (!user) {
+      return res.send({
+        status: "notok",
+        message: "User is not exist",
+      });
+    }
+
+    const userRespone = {
+      id: user._id.toString(),
+      email: user.email,
+      phone: user.phone,
+      password: user.password,
+      image: user.image,
+    };
+
+    res.send({ status: "ok", data: userRespone });
+  } catch (err) {
+    res.send({ status: "error", message: err.message });
+  }
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  phoneIsExist,
+  changePassword,
+  detailUser,
+  resgisterUserByGoogle,
+};

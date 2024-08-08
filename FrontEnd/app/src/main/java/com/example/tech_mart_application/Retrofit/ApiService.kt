@@ -1,6 +1,7 @@
 package com.example.tech_mart_application.Retrofit
 
 
+import com.example.tech_mart_application.models.DataDetailResponse
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.models.User
 import com.example.tech_mart_application.utils.Constants.Companion.BASE_URL
@@ -39,13 +40,19 @@ interface ApiService {
     @POST("user/login")
     fun loginUser(@Body user: User): Call<DataResponse>
 
+    @POST("user/registerByGoogle")
+    fun registerUserByGoogle(@Body user: User): Call<DataResponse>
+
     @POST("user/register")
     fun registerUser(@Body user: User): Call<DataResponse>
+
+    @GET("user/detailUser")
+    fun detailUser(@Query("email") email: String): Call<DataDetailResponse>
 
     @GET("user/phoneExist")
     fun isPhoneExist(@Query("phone") phone: String): Call<DataResponse>
 
-    @GET("user/changePassword")
+    @GET("user/changePassword/{id}")
     fun changePassword(
         @Path("id") id: String,
         @Query("password") password: String
