@@ -45,19 +45,18 @@ const registerUser = async (req, res) => {
 
 const resgisterUserByGoogle = async (req, res) => {
   const { fullName, email, phone, password, image } = req.body;
-
   let encryptPassword;
-  await bcrypt
-    .genSalt(saltRounds)
-    .then((salt) => {
-      return bcrypt.hash(password, salt);
-    })
-    .then((hash) => {
-      encryptPassword = hash;
-    })
-    .catch((err) => console.error(err.message));
-
   try {
+    await bcrypt
+      .genSalt(saltRounds)
+      .then((salt) => {
+        return bcrypt.hash(password, salt);
+      })
+      .then((hash) => {
+        encryptPassword = hash;
+      })
+      .catch((err) => console.error(err.message));
+
     const userObject = {
       fullName: fullName,
       email: email,
@@ -130,9 +129,11 @@ const phoneIsExist = async (req, res) => {
 const changePassword = async (req, res) => {
   const { id } = req.params;
   const { password } = req.query;
+  let encryptPassword;
   try {
+    const ObjectId = mongoose.Types.ObjectId.createFromHexString(id);
     const user = await User.findOne({
-      _id: mongoose.Types.ObjectId.createFromHexString(id),
+      _id: ObjectId,
     });
     if (!user) {
       return res.send({
@@ -141,11 +142,21 @@ const changePassword = async (req, res) => {
       });
     }
 
+    await bcrypt
+      .genSalt(saltRounds)
+      .then((salt) => {
+        return bcrypt.hash(password, salt);
+      })
+      .then((hash) => {
+        encryptPassword = hash;
+      })
+      .catch((err) => console.error(err.message));
+
     await User.updateOne(
-      { _id: id },
+      { _id: ObjectId },
       {
         $set: {
-          password,
+          encryptPassword,
         },
       }
     );
