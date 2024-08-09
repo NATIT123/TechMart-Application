@@ -90,4 +90,16 @@
     <string name="new_password">New Password</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="default_web_client_id">866428199120-r7oe38ji841k1p3gm8lijikrbf3j7t7e.apps.googleusercontent.com</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="official_category">Official Category</string>
+    <string name="see_all">See all</string>
+    <string name="recommendation">Recommendation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="order">Order</string>
+    <string name="profile">Profile</string>
 </resources>
