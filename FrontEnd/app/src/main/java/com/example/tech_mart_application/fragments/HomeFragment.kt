@@ -1,60 +1,93 @@
 package com.example.tech_mart_application.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Recycler
+import com.bumptech.glide.Glide
+import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
+import com.example.tech_mart_application.adapters.BannerViewAdapter
+import com.example.tech_mart_application.adapters.CategoryViewAdapter
+import com.example.tech_mart_application.databinding.FragmentHomeBinding
+import com.example.tech_mart_application.models.Banner
+import com.example.tech_mart_application.models.Category
+import com.example.tech_mart_application.viewModel.ProductViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var mBannerViewAdapter: BannerViewAdapter
+    private var listBanner = mutableListOf<Banner>()
+    private var listCategory = mutableListOf<Category>()
+    private lateinit var mCategoryViewAdapter : CategoryViewAdapter
+    private lateinit var productViewModel: ProductViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        productViewModel = (activity as MainActivity).viewModel
+
+
+
+        //Banner
+        productViewModel.getDataBanner()
+        loadBanner()
+
+        //Category
+        productViewModel.getDataCategory()
+        loadCategory()
+
+
+
     }
-}
+
+    private fun loadBanner() {
+        binding.isLoadingBanner = true
+        productViewModel.observerBanner().observe(viewLifecycleOwner) { it ->
+            listBanner = it
+            mBannerViewAdapter = BannerViewAdapter(listBanner)
+            binding.containerBanner.apply {
+                adapter = mBannerViewAdapter
+                clipToPadding = false
+                clipChildren = false
+                offscreenPageLimit = 3
+                getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            }
+            binding.circleIndicator.setViewPager(binding.containerBanner)
+            mBannerViewAdapter.registerAdapterDataObserver(binding.circleIndicator.adapterDataObserver)
+            binding.isLoadingBanner = false
+        }
+    }
+
+    private fun loadCategory(){
+        binding.isLoadingOfficial= true
+        productViewModel.observerCategory().observe(viewLifecycleOwner) {
+            listCategory = it
+            mCategoryViewAdapter = CategoryViewAdapter(listCategory, requireContext())
+            binding.rcvOfficialCategory.apply {
+                adapter = mCategoryViewAdapter
+                layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
+                binding.isLoadingOfficial =false
+            }
+
+        }
+        }
+    }
+

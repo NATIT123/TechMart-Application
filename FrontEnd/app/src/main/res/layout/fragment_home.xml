@@ -9,6 +9,7 @@
             name="isLoadingBanner"
             type="Boolean" />
 
+
         <variable
             name="isLoadingOfficial"
             type="Boolean" />
@@ -18,21 +19,19 @@
             type="Boolean" />
 
 
-
         <import type="android.view.View" />
     </data>
 
 
     <RelativeLayout
-        tools:context=".fragments.HomeFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        tools:context=".fragments.HomeFragment">
 
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,21 +86,21 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
-                            android:layout_gravity="center"
                             android:id="@+id/imgNotification"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center"
                             android:src="@drawable/baseline_notifications_24" />
 
                         <TextView
-                            android:gravity="center"
                             android:id="@+id/tvAmountNotification"
                             android:layout_width="@dimen/_12sdp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_marginBottom="@dimen/_10sdp"
-                            android:text="1"
                             android:background="@drawable/background_amount_notification"
+                            android:gravity="center"
+                            android:text="1"
                             android:textColor="@color/White"
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold" />
@@ -110,10 +109,10 @@
 
 
                     <ImageView
-                        android:layout_gravity="center"
                         android:id="@+id/imgSearch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/baseline_search_24" />
@@ -122,6 +121,9 @@
                 </LinearLayout>
 
                 <FrameLayout
+                    android:background="@drawable/background_category_img"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:animateLayoutChanges="true">
@@ -139,7 +141,6 @@
                         android:visibility="@{isLoadingBanner?View.VISIBLE:View.GONE,default=gone}" />
 
                     <me.relex.circleindicator.CircleIndicator3
-                        app:ci_width="@dimen/_10sdp"
                         android:id="@+id/circle_indicator"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -147,74 +148,74 @@
                         android:layout_marginBottom="@dimen/_10sdp"
                         android:visibility="@{isLoadingBanner?View.GONE:View.VISIBLE,default=visible}"
                         app:ci_drawable="@color/DeepSkyBlue"
-                        app:ci_height="@dimen/_5sdp" />
+                        app:ci_height="@dimen/_5sdp"
+                        app:ci_width="@dimen/_10sdp" />
                 </FrameLayout>
 
                 <LinearLayout
-                    android:padding="@dimen/_12sdp"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_12sdp">
 
                     <TextView
-                        android:layout_weight="1"
-                        android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold"
-                        android:text="@string/official_category"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/official_category"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:textColor="@color/DeepSkyBlue"
                         android:id="@+id/rcvRecommendationCategory"
-                        android:text="@string/see_all"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="@string/see_all"
+                        android:textColor="@color/DeepSkyBlue" />
 
                 </LinearLayout>
 
                 <FrameLayout
-                    android:animateLayoutChanges="true"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="@{isLoadingOfficial?View.GONE:View.VISIBLE,default=visible}"
                         android:id="@+id/rcvOfficialCategory"
-                        android:padding="@dimen/_12sdp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_12sdp"
+                        android:visibility="@{isLoadingOfficial?View.GONE:View.VISIBLE,default=visible}" />
 
                     <ProgressBar
-                        android:visibility="@{isLoadingOfficial?View.VISIBLE:View.GONE,default=gone}"
-                        android:layout_gravity="center"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="@{isLoadingOfficial?View.VISIBLE:View.GONE,default=gone}" />
 
                 </FrameLayout>
 
 
-
                 <LinearLayout
-                    android:padding="@dimen/_12sdp"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_12sdp">
 
                     <TextView
-                        android:layout_weight="1"
-                        android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold"
-                        android:text="@string/recommendation"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/recommendation"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvSeeAllRecommendation"
-                        android:textColor="@color/DeepSkyBlue"
-                        android:text="@string/see_all"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="@string/see_all"
+                        android:textColor="@color/DeepSkyBlue" />
 
                 </LinearLayout>
 
@@ -223,17 +224,17 @@
                     android:layout_height="wrap_content">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="@{isLoadingRecommendation?View.GONE:View.VISIBLE,default=visible}"
-                        android:padding="@dimen/_12sdp"
                         android:id="@+id/rcvRecommendation"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_12sdp"
+                        android:visibility="@{isLoadingRecommendation?View.GONE:View.VISIBLE,default=visible}" />
 
                     <ProgressBar
-                        android:visibility="@{isLoadingRecommendation?View.VISIBLE:View.GONE,default=gone}"
-                        android:layout_gravity="center"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="@{isLoadingRecommendation?View.VISIBLE:View.GONE,default=gone}" />
 
                 </FrameLayout>
 
@@ -244,9 +245,6 @@
 
 
     </RelativeLayout>
-
-
-
 
 
 </layout>
