@@ -56,6 +56,8 @@ class CategoryViewAdapter(private val listCategory: MutableList<Category>,privat
                 tvCategory.visibility  = View.VISIBLE
             }
             else{
+                imgCategory.setBackgroundResource(0)
+                mainLayout.setBackgroundResource(R.drawable.background_category_img)
                 tvCategory.visibility  = View.GONE
             }
         }

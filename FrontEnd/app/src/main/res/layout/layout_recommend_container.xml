@@ -1,79 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:elevation="@dimen/_10sdp"
-    android:layout_marginStart="@dimen/_10sdp"
-    android:layout_marginTop="@dimen/_10sdp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <FrameLayout
-        android:background="@drawable/background_recommend_img"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <data>
 
-        <ImageView
-            android:padding="@dimen/_16sdp"
-            android:id="@+id/imgRecommend"
-            android:src="@drawable/avatar"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_200sdp"/>
-
-        <ImageView
-            android:id="@+id/tvFavoriteRecommend"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:src="@drawable/baseline_favorite_border_24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </FrameLayout>
+        <variable
+            name="Product"
+            type="com.example.tech_mart_application.models.Product" />
+    </data>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:elevation="@dimen/_10sdp"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_recommend_img">
+
+            <ImageView
+               android:layout_gravity="center"
+                android:id="@+id/imgRecommend"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:padding="@dimen/_16sdp"
+                android:src="@drawable/avatar" />
+
+            <ImageView
+                android:id="@+id/tvFavoriteRecommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/baseline_favorite_border_24" />
+
+        </FrameLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textColor="@color/Black"
+                    android:id="@+id/tvPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{'$'+Double.toString(Product.price)}"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:text="@{Double.toString(Product.rating)}"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/baseline_star_24" />
+
+            </LinearLayout>
+
 
             <TextView
-                android:id="@+id/tvPrice"
-                android:layout_weight="1"
-                android:textSize="@dimen/_20sdp"
-                android:textStyle="bold"
-                android:text="$-"
+                android:textColor="@color/Black"
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:drawablePadding="@dimen/_10sdp"
-                android:id="@+id/tvRate"
-                android:drawableStart="@drawable/baseline_star_24"
-                android:textSize="@dimen/_18sdp"
-                android:textStyle="bold"
-                android:text="5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:layout_height="wrap_content"
+                android:text="@{Product.name}"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
         </LinearLayout>
 
 
-
-        <TextView
-            android:id="@+id/tvName"
-            android:text="Title"
-            android:textStyle="bold"
-            android:textSize="@dimen/_20sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
-
-
-
-
-
-</LinearLayout>
+</layout>

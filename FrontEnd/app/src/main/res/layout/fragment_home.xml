@@ -167,7 +167,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/rcvRecommendationCategory"
+                        android:id="@+id/tvOfficialCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/see_all"
@@ -220,6 +220,7 @@
                 </LinearLayout>
 
                 <FrameLayout
+                    android:animateLayoutChanges="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

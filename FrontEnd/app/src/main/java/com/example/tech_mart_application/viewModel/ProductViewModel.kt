@@ -6,6 +6,8 @@ import com.example.tech_mart_application.R
 import com.example.tech_mart_application.database.ProductDatabase
 import com.example.tech_mart_application.models.Banner
 import com.example.tech_mart_application.models.Category
+import com.example.tech_mart_application.models.Product
+import java.util.Date
 
 class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel() {
 
@@ -14,6 +16,9 @@ class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel
 
     private var categoryLiveData = MutableLiveData<MutableList<Category>>()
     private var listCategory = mutableListOf<Category>()
+
+    private var recommendLiveData = MutableLiveData<MutableList<Product>>()
+    private var listRecommend = mutableListOf<Product>()
 
 
     fun getDataBanner() {
@@ -29,18 +34,85 @@ class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel
         return bannerLiveData
     }
 
-    fun getDataCategory(){
-        listCategory.add(Category("Test","1",R.drawable.avatar))
-        listCategory.add(Category("Test","1",R.drawable.avatar))
-        listCategory.add(Category("Test","1",R.drawable.avatar))
-        listCategory.add(Category("Test","1",R.drawable.avatar))
-        listCategory.add(Category("Test","1",R.drawable.avatar))
-        listCategory.add(Category("Test","1",R.drawable.avatar))
+    fun getDataCategory() {
+        val listProduct = mutableListOf<Product>()
+        listProduct.add(
+            Product(
+                "1", "1", "1", 1, 1.1, 1.1, Date(), "Apple"
+            )
+        )
+        listCategory.add(
+            Category("Test", "1", R.drawable.avatar, listProduct)
+        )
+        listCategory.add(Category("Test", "1", R.drawable.avatar, listProduct))
+        listCategory.add(Category("Test", "1", R.drawable.avatar, listProduct))
+        listCategory.add(Category("Test", "1", R.drawable.avatar, listProduct))
+        listCategory.add(Category("Test", "1", R.drawable.avatar, listProduct))
+        listCategory.add(Category("Test", "1", R.drawable.avatar, listProduct))
         categoryLiveData.postValue(listCategory)
     }
 
-    fun observerCategory() :MutableLiveData<MutableList<Category>>{
+    fun observerCategory(): MutableLiveData<MutableList<Category>> {
         return categoryLiveData
     }
+
+    fun getDataRecommend() {
+        listRecommend.add(
+            Product(
+                "1",
+                "Product1",
+                "Description1",
+                R.drawable.avatar,
+                1.1,
+                1.1,
+                Date(),
+                "Apple"
+            ),
+        )
+        listRecommend.add(
+            Product(
+                "1",
+                "Product2",
+                "Description2",
+                R.drawable.avatar,
+                1.2,
+                1.2,
+                Date(),
+                "Apple"
+            ),
+        )
+        listRecommend.add(
+            Product(
+                "1",
+                "Product3",
+                "Description3",
+                R.drawable.avatar,
+                1.1,
+                1.1,
+                Date(),
+                "Apple"
+            ),
+        )
+
+        listRecommend.add(
+            Product(
+                "1",
+                "Product4",
+                "Description4",
+                R.drawable.avatar,
+                1.4,
+                1.4,
+                Date(),
+                "Apple"
+            ),
+        )
+
+        recommendLiveData.postValue(listRecommend)
+    }
+
+    fun observerRecommendProduct(): MutableLiveData<MutableList<Product>> {
+        return recommendLiveData
+    }
+
 
 }

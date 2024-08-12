@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
@@ -17,9 +18,11 @@ import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.adapters.BannerViewAdapter
 import com.example.tech_mart_application.adapters.CategoryViewAdapter
+import com.example.tech_mart_application.adapters.RecommendationViewAdapter
 import com.example.tech_mart_application.databinding.FragmentHomeBinding
 import com.example.tech_mart_application.models.Banner
 import com.example.tech_mart_application.models.Category
+import com.example.tech_mart_application.models.Product
 import com.example.tech_mart_application.viewModel.ProductViewModel
 
 
@@ -29,7 +32,9 @@ class HomeFragment : Fragment() {
     private lateinit var mBannerViewAdapter: BannerViewAdapter
     private var listBanner = mutableListOf<Banner>()
     private var listCategory = mutableListOf<Category>()
-    private lateinit var mCategoryViewAdapter : CategoryViewAdapter
+    private var listRecommend = mutableListOf<Product>()
+    private lateinit var mRecommendViewAdapter: RecommendationViewAdapter
+    private lateinit var mCategoryViewAdapter: CategoryViewAdapter
     private lateinit var productViewModel: ProductViewModel
 
     override fun onCreateView(
@@ -45,7 +50,6 @@ class HomeFragment : Fragment() {
         productViewModel = (activity as MainActivity).viewModel
 
 
-
         //Banner
         productViewModel.getDataBanner()
         loadBanner()
@@ -54,6 +58,9 @@ class HomeFragment : Fragment() {
         productViewModel.getDataCategory()
         loadCategory()
 
+        //Recommend
+        productViewModel.getDataRecommend()
+        loadRecommend()
 
 
     }
@@ -76,18 +83,33 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun loadCategory(){
-        binding.isLoadingOfficial= true
+    private fun loadCategory() {
+        binding.isLoadingOfficial = true
         productViewModel.observerCategory().observe(viewLifecycleOwner) {
             listCategory = it
             mCategoryViewAdapter = CategoryViewAdapter(listCategory, requireContext())
             binding.rcvOfficialCategory.apply {
                 adapter = mCategoryViewAdapter
-                layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
-                binding.isLoadingOfficial =false
+                layoutManager =
+                    LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+                binding.isLoadingOfficial = false
             }
 
         }
+    }
+
+    private fun loadRecommend() {
+        binding.isLoadingRecommendation = true
+        productViewModel.observerRecommendProduct().observe(viewLifecycleOwner) {
+            listRecommend = it
+            mRecommendViewAdapter = RecommendationViewAdapter(listRecommend)
+            binding.rcvRecommendation.apply {
+                adapter = mRecommendViewAdapter
+                layoutManager =
+                    GridLayoutManager(requireActivity(), 2, GridLayoutManager.VERTICAL, false)
+                binding.isLoadingRecommendation = false
+            }
         }
     }
+}
 
