@@ -102,4 +102,14 @@
     <string name="wishlist">Wishlist</string>
     <string name="order">Order</string>
     <string name="profile">Profile</string>
+    <string name="check_out">Check Out</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="fee_delivery">Fee Delivery</string>
+    <string name="total_tax">Total Tax</string>
+    <string name="total">Total</string>
+    <string name="your_delivery_address">Your Delivery Address</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="information">Information</string>
+    <string name="my_cart">My Cart</string>
 </resources>

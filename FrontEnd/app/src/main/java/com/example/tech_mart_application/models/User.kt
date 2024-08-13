@@ -6,5 +6,7 @@ class User(
     var email: String,
     var phone: String,
     var fullName: String,
-    var password: String
+    var password: String,
+    var address:String,
+    var listOrder: List<Order>? = null
 )

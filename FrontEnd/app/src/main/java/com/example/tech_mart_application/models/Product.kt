@@ -7,12 +7,16 @@ import java.util.Date
 @Entity(tableName = "products")
 class Product(
     @PrimaryKey
-    var id: String,
-    var name: String,
-    var description: String,
-    var image: Int,
-    var price: Double,
-    var rating: Double,
-    var createdOn: Date,
-    var vendor: String
+    var id: String="",
+    var name: String = "",
+    var listImage: List<String>? = null,
+    var description: String = "",
+    var image: Int = 0,
+    var price: Double = 0.0,
+    var rating: Double = 0.0,
+    var color: String = "",
+    var createdOn: Date = Date(),
+    var vendor: String = "",
+    var quantity: Int = 0,
+    var listOrder: List<Order>? = null
 )

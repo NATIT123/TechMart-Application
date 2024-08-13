@@ -19,9 +19,6 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/myBottomNav"
         app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
         app:itemIconTint="@color/custom_color_nav"
         app:itemTextColor="@color/custom_color_nav"
         app:menu="@menu/bottom_nav"

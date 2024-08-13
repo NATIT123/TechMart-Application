@@ -83,7 +83,7 @@ class SignInActivity : AppCompatActivity() {
                     userAuth?.email!!,
                     userAuth.phoneNumber ?: "unregister",
                     userAuth.displayName!!,
-                    ""
+                    "", ""
                 )
                 handleLoginGoogle(user)
             } else {
@@ -193,7 +193,7 @@ class SignInActivity : AppCompatActivity() {
     private fun signIn() {
         val email = binding.edtEmail.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
-        val user = User(email = email, password = password, image = "", phone = "", fullName = "")
+        val user = User(email = email, password = password, image = "", phone = "", fullName = "", address = "")
         handleLoginUser(user)
 
     }
@@ -212,7 +212,7 @@ class SignInActivity : AppCompatActivity() {
                                 isLoading(false)
                                 val user = body.data
 
-                                Log.d("MyApp",user.image)
+                                Log.d("MyApp", user.image)
 
 
                                 preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)

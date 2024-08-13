@@ -38,7 +38,7 @@ class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel
         val listProduct = mutableListOf<Product>()
         listProduct.add(
             Product(
-                "1", "1", "1", 1, 1.1, 1.1, Date(), "Apple"
+                "1", "1", listOf(), "1", 1, 1.1, 1.1, "Apple"
             )
         )
         listCategory.add(
@@ -61,10 +61,12 @@ class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel
             Product(
                 "1",
                 "Product1",
+                listOf(),
                 "Description1",
                 R.drawable.avatar,
                 1.1,
                 1.1,
+                "",
                 Date(),
                 "Apple"
             ),
@@ -72,11 +74,13 @@ class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel
         listRecommend.add(
             Product(
                 "1",
-                "Product2",
-                "Description2",
+                "Product1",
+                listOf(),
+                "Description1",
                 R.drawable.avatar,
-                1.2,
-                1.2,
+                1.1,
+                1.1,
+                "",
                 Date(),
                 "Apple"
             ),
@@ -84,11 +88,13 @@ class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel
         listRecommend.add(
             Product(
                 "1",
-                "Product3",
-                "Description3",
+                "Product1",
+                listOf(),
+                "Description1",
                 R.drawable.avatar,
                 1.1,
                 1.1,
+                "",
                 Date(),
                 "Apple"
             ),
@@ -97,11 +103,13 @@ class ProductViewModel(private val productDatabase: ProductDatabase) : ViewModel
         listRecommend.add(
             Product(
                 "1",
-                "Product4",
-                "Description4",
+                "Product1",
+                listOf(),
+                "Description1",
                 R.drawable.avatar,
-                1.4,
-                1.4,
+                1.1,
+                1.1,
+                "",
                 Date(),
                 "Apple"
             ),

@@ -167,7 +167,7 @@ class SignUpActivity : AppCompatActivity() {
             phone = binding.edtPhone.text.toString().trim(),
             fullName = binding.edtFullName.text.toString().trim(),
             password = binding.edtPassword.text.toString().trim(),
-            image = encodeImage(getImageDefault(image))
+            image = encodeImage(getImageDefault(image)), address = ""
         )
 
         //Handle ApiRegister
