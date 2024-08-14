@@ -19,7 +19,6 @@ import androidx.core.widget.addTextChangedListener
 import com.example.tech_mart_application.databinding.ActivityOtpactivityBinding
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_FORGOT_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
-import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.OPTION_FORGOT_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
@@ -53,7 +52,10 @@ class OTPActivity : AppCompatActivity() {
 
         mAuth = FirebaseAuth.getInstance()
 
-        Log.d("MyApp","${intent.getStringExtra(KEY_USER_ID)} OTP")
+        //Handle Back Button
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
 
 
         getData()

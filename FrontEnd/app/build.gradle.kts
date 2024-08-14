@@ -108,4 +108,7 @@ dependencies {
     //Phone Number
     implementation("io.michaelrocks:libphonenumber-android:8.13.35")
 
+    //Circle ImageView
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
 }

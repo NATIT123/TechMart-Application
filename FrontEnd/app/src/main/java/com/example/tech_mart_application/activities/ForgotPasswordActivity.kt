@@ -52,6 +52,11 @@ class ForgotPasswordActivity : AppCompatActivity() {
         binding.btnGetOTP.setOnClickListener {
             getOTP()
         }
+
+        //Handle Back Button
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun isLoading(isLoading: Boolean) {

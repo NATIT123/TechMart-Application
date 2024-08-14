@@ -21,6 +21,7 @@ import com.example.tech_mart_application.databinding.ActivitySignUpBinding
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.models.User
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_IS_SIGNED_IN
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ADDRESS
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
@@ -77,6 +78,12 @@ class SignUpActivity : AppCompatActivity() {
         binding.btnSignUp.setOnClickListener {
             isValidSignUpDetails()
         }
+
+
+        //Handle Back Button
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
 
@@ -129,6 +136,9 @@ class SignUpActivity : AppCompatActivity() {
         ) {
             showToast("Email not valid")
             return false
+        } else if (binding.edtAddress.text.toString().trim().isEmpty()) {
+            showToast("Please Enter Address")
+            return false
         } else if (binding.edtPhone.text.toString().trim().isEmpty()) {
             showToast("Please Enter phone")
             return false
@@ -167,7 +177,8 @@ class SignUpActivity : AppCompatActivity() {
             phone = binding.edtPhone.text.toString().trim(),
             fullName = binding.edtFullName.text.toString().trim(),
             password = binding.edtPassword.text.toString().trim(),
-            image = encodeImage(getImageDefault(image)), address = ""
+            image = encodeImage(getImageDefault(image)),
+            address = binding.edtAddress.text.toString().trim()
         )
 
         //Handle ApiRegister
@@ -224,9 +235,9 @@ class SignUpActivity : AppCompatActivity() {
                                     KEY_USER_EMAIL,
                                     user.email
                                 );
+                                preferenceManager.putString(KEY_USER_ADDRESS,user.address)
                                 preferenceManager.putBoolean(KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(KEY_USER_ID, body.data.split(':')[1])
-                                Log.d("MyApp", body.data.split(':')[1])
                                 preferenceManager.putString(
                                     KEY_USER_FULL_NAME,
                                     user.fullName

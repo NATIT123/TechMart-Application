@@ -62,6 +62,12 @@ class ChangePasswordActivity : AppCompatActivity() {
         preferenceManager = PreferenceManager(applicationContext)
         preferenceManager.instance()
 
+
+        //Handle Back Button
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
         //Load Option
         loadOption()
 

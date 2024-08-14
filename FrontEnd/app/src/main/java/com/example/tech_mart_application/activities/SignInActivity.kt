@@ -22,6 +22,7 @@ import com.example.tech_mart_application.models.DataDetailResponse
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.models.User
 import com.example.tech_mart_application.utils.Constants
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ADDRESS
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
@@ -83,7 +84,7 @@ class SignInActivity : AppCompatActivity() {
                     userAuth?.email!!,
                     userAuth.phoneNumber ?: "unregister",
                     userAuth.displayName!!,
-                    "", ""
+                    "", "Empty"
                 )
                 handleLoginGoogle(user)
             } else {
@@ -193,7 +194,14 @@ class SignInActivity : AppCompatActivity() {
     private fun signIn() {
         val email = binding.edtEmail.text.toString().trim()
         val password = binding.edtPassword.text.toString().trim()
-        val user = User(email = email, password = password, image = "", phone = "", fullName = "", address = "")
+        val user = User(
+            email = email,
+            password = password,
+            image = "",
+            phone = "",
+            fullName = "",
+            address = ""
+        )
         handleLoginUser(user)
 
     }
@@ -362,9 +370,11 @@ class SignInActivity : AppCompatActivity() {
                                     KEY_USER_EMAIL,
                                     user.email
                                 );
+                                preferenceManager.putString(
+                                    KEY_USER_ADDRESS, user.address
+                                )
                                 preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(KEY_USER_ID, body.data.split(':')[1])
-                                Log.d("MyApp", body.data.split(':')[1])
                                 preferenceManager.putString(
                                     KEY_USER_FULL_NAME,
                                     user.fullName

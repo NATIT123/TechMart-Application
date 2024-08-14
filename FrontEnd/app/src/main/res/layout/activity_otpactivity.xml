@@ -18,6 +18,16 @@
         android:orientation="vertical"
         tools:context=".activities.OTPActivity">
 
+        <ImageButton
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:id="@+id/btnBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="start"
+            android:background="@drawable/background_category_img"
+            android:src="@drawable/baseline_arrow_back_24" />
+
 
         <ImageView
             android:layout_width="match_parent"

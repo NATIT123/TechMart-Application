@@ -6,7 +6,7 @@ const User = mongoose.model("UserInfo");
 const saltRounds = parseInt(process.env.saltRounds) || 10;
 
 const registerUser = async (req, res) => {
-  const { fullName, email, phone, password, image } = req.body;
+  const { fullName, address, email, phone, password, image } = req.body;
 
   const oldUser = await User.findOne({ email: email });
   let encryptPassword;
@@ -30,6 +30,7 @@ const registerUser = async (req, res) => {
         phone: phone,
         password: encryptPassword,
         image,
+        address,
       };
       const savedUser = await User.collection.insertOne(userObject);
       console.log(savedUser.insertedId.toString());
@@ -63,6 +64,7 @@ const resgisterUserByGoogle = async (req, res) => {
       phone: phone,
       password: encryptPassword,
       image,
+      address,
     };
     const savedUser = await User.collection.insertOne(userObject);
     console.log(savedUser.insertedId.toString());
@@ -183,6 +185,7 @@ const detailUser = async (req, res) => {
       phone: user.phone,
       password: user.password,
       image: user.image,
+      address: user.address,
     };
 
     res.send({ status: "ok", data: userRespone });
