@@ -25,9 +25,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var toggle: ActionBarDrawerToggle
 
+
+
     val viewModel: ProductViewModel by lazy {
         val productDatabase = ProductDatabase.getInstance(this)
-        val productViewModelFactory = ProductViewModelFactory(productDatabase)
+        val productViewModelFactory = ProductViewModelFactory(productDatabase,applicationContext)
         ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
     }
 
@@ -56,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         toggle = ActionBarDrawerToggle(
             this,

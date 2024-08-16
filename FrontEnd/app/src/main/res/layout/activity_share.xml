@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.ShareActivity">
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_gravity="center"
+            android:id="@+id/btnBack"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@drawable/background_category_img"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/_20sdp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/LightSlateGray"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            android:text="Share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/avatar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:minLines="1"
+            android:text="@string/invite_your_friends_and_family_to_use_techmart_app"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:text="Invite your friends and family to use TechMart App"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/avatar" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:text="How it works"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:text="1.Click one any of below options(Message, Facebook,more"
+            android:textColor="@color/LightSlateGray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:text="2.Select contact from the list"
+            android:textColor="@color/LightSlateGray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="2"
+            android:text="3.Earn upto 5% discount as soon as your referal completes the sign up process and make their first purchase"
+            android:textColor="@color/LightSlateGray"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_marginTop="@dimen/_5sdp"
+            android:minLines="2"
+            android:textColor="@color/LightSlateGray"
+            android:textStyle="bold"
+            android:text="4. Check offer section for your coupon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:minLines="2"
+            android:textColor="@color/LightSlateGray"
+            android:textStyle="bold"
+            android:text="5. Enjoy."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginStart="@dimen/_15sdp"
+        android:textColor="@color/Black"
+        android:textStyle="bold"
+        android:drawablePadding="@dimen/_5sdp"
+        android:drawableEnd="@drawable/baseline_share_24"
+        android:text="Share your link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:src="@drawable/baseline_email_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/_20sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="@string/more"
+            android:background="@drawable/background_blue_corner_15"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_30sdp"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

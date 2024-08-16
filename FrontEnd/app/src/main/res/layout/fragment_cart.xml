@@ -8,16 +8,26 @@
         <variable
             name="Order"
             type="com.example.tech_mart_application.models.Order" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+        <variable
+            name="isEmpty"
+            type="Boolean" />
+
+        <import type="android.view.View" />
     </data>
 
 
     <RelativeLayout
+        tools:context=".fragments.CartFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".fragments.CartFragment">
+        android:layout_height="match_parent">
 
         <androidx.core.widget.NestedScrollView
+            android:visibility="@{isEmpty?View.GONE:View.VISIBLE,default=gone}"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -31,35 +41,11 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp">
-
-                        <ImageButton
-                            android:id="@+id/buttonBack"
-                            android:layout_width="@dimen/_30sdp"
-                            android:layout_height="@dimen/_30sdp"
-                            android:background="@drawable/background_category_img"
-                            android:src="@drawable/baseline_arrow_back_24" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="@string/my_cart"
-                            android:textSize="@dimen/_14sdp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rcvCart"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:padding="@dimen/_10sdp" />
 
                     <TextView
@@ -98,12 +84,14 @@
                                     android:textSize="@dimen/_12sdp"
                                     android:textStyle="bold" />
 
-                                <TextView
+                                <EditText
+                                    android:textColor="@color/Black"
+                                    android:background="@drawable/round_back_grey_15"
+                                    android:hint="@string/your_address"
                                     android:id="@+id/tvAddress"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:drawablePadding="@dimen/_5sdp"
-                                    android:text="NY-downtown"
                                     android:textSize="@dimen/_15sdp"
                                     android:textStyle="bold"
                                     app:drawableStartCompat="@drawable/baseline_location_on_24" />
@@ -173,159 +161,174 @@
 
                 </LinearLayout>
 
-
-            </LinearLayout>
-
-
-        </androidx.core.widget.NestedScrollView>
-
-        <LinearLayout
-            android:layout_marginBottom="@dimen/_3sdp"
-            android:layout_alignParentBottom="true"
-            android:gravity="bottom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/_10sdp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_12sdp"
-                android:text="@string/order_summary"
-                android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_blue_bottom_checkout"
-                android:orientation="vertical"
-                android:padding="@dimen/_12sdp">
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_10sdp"
+                    android:gravity="bottom"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/subtotal"
-                            android:textColor="@color/White"
-                            android:textSize="@dimen/_12sdp" />
-
-                        <TextView
-                            android:id="@+id/tvSubTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="21dp"
-                            android:text="@{'$'+Double.toString(Order.subTotal)}"
-                            android:textColor="@color/White" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/fee_delivery"
-                            android:textColor="@color/White"
-                            android:textSize="@dimen/_12sdp" />
-
-                        <TextView
-                            android:id="@+id/tvDelivery"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{'$'+Double.toString(Order.transportPrice)}"
-                            android:textColor="@color/White" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/total_tax"
-                            android:textColor="@color/White"
-                            android:textSize="@dimen/_12sdp" />
-
-                        <TextView
-                            android:id="@+id/tvTotalTax"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{'$'+Double.toString(Order.tax)}"
-                            android:textColor="@color/White" />
-
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:background="@color/LightGrey" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/total"
-                            android:textColor="@color/White"
-                            android:textSize="@dimen/_12sdp" />
-
-                        <TextView
-                            android:id="@+id/tvTotal"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{'$'+Double.toString(Order.total)}"
-                            android:textColor="@color/White" />
-
-
-                    </LinearLayout>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/buttonCheckout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:background="@drawable/background_category_img"
-                        android:text="@string/check_out"
-                        android:textColor="@color/Black"
+                        android:padding="@dimen/_12sdp"
+                        android:text="@string/order_summary"
+                        android:textSize="@dimen/_14sdp"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/background_blue_bottom_checkout"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_12sdp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/subtotal"
+                                    android:textColor="@color/White"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <TextView
+                                    android:id="@+id/tvSubTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="21dp"
+                                    android:text="@{'$'+Double.toString(Order.subTotal)}"
+                                    android:textColor="@color/White" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/fee_delivery"
+                                    android:textColor="@color/White"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <TextView
+                                    android:id="@+id/tvDelivery"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{'$'+Double.toString(Order.transportPrice)}"
+                                    android:textColor="@color/White" />
+
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/total_tax"
+                                    android:textColor="@color/White"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <TextView
+                                    android:id="@+id/tvTotalTax"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{'$'+Double.toString(Order.tax)}"
+                                    android:textColor="@color/White" />
+
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_1sdp"
+                                android:background="@color/LightGrey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/total"
+                                    android:textColor="@color/White"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <TextView
+                                    android:id="@+id/tvTotal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{'$'+Double.toString(Order.total)}"
+                                    android:textColor="@color/White" />
+
+
+                            </LinearLayout>
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/buttonCheckout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:background="@drawable/background_category_img"
+                                android:text="@string/check_out"
+                                android:textColor="@color/Black"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
-        </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <TextView
+            android:visibility="@{isEmpty?View.VISIBLE:View.GONE,default=gone}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/your_cart_is_empty"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:visibility="@{isLoading?View.VISIBLE:View.GONE,default=gone}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
 
 
     </RelativeLayout>
+
 
 </layout>

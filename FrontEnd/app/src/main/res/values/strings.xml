@@ -115,4 +115,11 @@
     <string name="order_summary">Order Summary</string>
     <string name="information">Information</string>
     <string name="my_cart">My Cart</string>
+    <string name="your_cart_is_empty">Your cart is Empty</string>
+    <string name="your_address">Your Address</string>
+    <string name="your_order_is_empty">Your order is Empty</string>
+    <string name="invite_your_friends_and_family_to_use_techmart_app">Invite your friends and family to use TechMart App</string>
+    <string name="more">More</string>
+    <string name="notifications">Notifications</string>
+    <string name="your_notification_is_empty">Your notification is Empty</string>
 </resources>
