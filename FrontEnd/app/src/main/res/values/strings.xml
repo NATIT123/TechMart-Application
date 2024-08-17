@@ -122,4 +122,6 @@
     <string name="more">More</string>
     <string name="notifications">Notifications</string>
     <string name="your_notification_is_empty">Your notification is Empty</string>
+    <string name="use_and_save">Use and Save</string>
+    <string name="offers">Offers</string>
 </resources>
