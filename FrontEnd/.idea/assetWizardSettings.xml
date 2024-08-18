@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/edit_note/baseline_edit_note_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/shop/baseline_shop_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,8 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="282727" />
-                            <entry key="outputName" value="baseline_edit_note_24" />
+                            <entry key="color" value="b4ad22" />
+                            <entry key="outputName" value="baseline_shop_24" />
                             <entry key="sourceFile" value="E:\Android\LearnKotlin\Project\Student-Information-Management-Application" />
                           </map>
                         </option>

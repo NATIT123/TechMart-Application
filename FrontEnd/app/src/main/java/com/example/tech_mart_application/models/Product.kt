@@ -7,9 +7,10 @@ import java.util.Date
 @Entity(tableName = "products")
 class Product(
     @PrimaryKey
-    var id: String="",
+    var id: String = "",
     var name: String = "",
     var listImage: List<String>? = null,
+    var category: Category? = null,
     var description: String = "",
     var image: Int = 0,
     var price: Double = 0.0,
