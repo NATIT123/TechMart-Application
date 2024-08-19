@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tech_mart_application.databinding.LayoutPendingOrderViewBinding
+import com.example.tech_mart_application.models.Items
 import com.example.tech_mart_application.models.Order
 import com.example.tech_mart_application.models.Product
 
 class PendingOrderViewAdapter(
-    private val listProduct: MutableList<Product>, private
-    val listOrder: MutableList<Order>
+    private
+    val listItem: MutableList<Items>
 ) :
     RecyclerView.Adapter<PendingOrderViewAdapter.PendingOrderViewHolder>() {
 
@@ -26,15 +27,13 @@ class PendingOrderViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        return listOrder.size
+        return listItem.size
     }
 
     override fun onBindViewHolder(holder: PendingOrderViewHolder, position: Int) {
-        val order = listOrder[position]
-        val product = order.listProduct?.get(position)
+        val items = listItem[position]
         holder.layoutPendingOrderViewBinding.apply {
-            orderDetail = order
-            productDetail = product
+            itemsDetail = items
         }
     }
 

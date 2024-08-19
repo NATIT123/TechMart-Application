@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.adapters.PendingOrderViewAdapter
 import com.example.tech_mart_application.databinding.ActivityPendingOrderBinding
+import com.example.tech_mart_application.models.Items
 import com.example.tech_mart_application.models.Order
 import com.example.tech_mart_application.models.Product
 
@@ -13,7 +14,7 @@ class PendingOrderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPendingOrderBinding
     private lateinit var mPendingOrderViewAdapter: PendingOrderViewAdapter
-    private val listProduct = mutableListOf<Product>()
+    private val listItem = mutableListOf<Items>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPendingOrderBinding.inflate(layoutInflater)
@@ -24,15 +25,15 @@ class PendingOrderActivity : AppCompatActivity() {
     }
 
     private fun loadPendingOrder() {
-        listProduct.add(Product())
+        listItem.add(Items())
     }
 
     private fun loadRecyclerView() {
         binding.isLoading = true
-        binding.isEmpty = listProduct.isEmpty()
-        if (listProduct.isEmpty()) {
+        binding.isEmpty = listItem.isEmpty()
+        if (listItem.isEmpty()) {
+            mPendingOrderViewAdapter = PendingOrderViewAdapter(listItem)
             binding.rcvPending.apply {
-//                mPendingOrderViewAdapter = PendingOrderViewAdapter()
                 adapter = mPendingOrderViewAdapter
                 layoutManager = LinearLayoutManager(
                     this@PendingOrderActivity,

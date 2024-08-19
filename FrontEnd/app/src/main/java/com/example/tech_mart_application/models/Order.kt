@@ -7,7 +7,7 @@ class Order(
     var transportPrice: Double = 0.0,
     var tax: Double = 0.0,
     var discount: Double = 0.0,
-    var listProduct: List<Product>? = null,
+    var listItem: List<Items>? = null,
     var orderStatus: String = "1",
     var statusDate: String = "1",
     var category: Category? = null,

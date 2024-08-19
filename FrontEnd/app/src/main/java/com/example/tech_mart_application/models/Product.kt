@@ -19,6 +19,4 @@ class Product(
     var createdOn: Date = Date(),
     var vendor: String = "",
     var quantity: Int = 0,
-    var quantityPurchase: Int = 0,
-    var listOrder: List<Order>? = null
 )

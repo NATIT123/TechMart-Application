@@ -7,6 +7,7 @@ class User(
     var phone: String,
     var fullName: String,
     var password: String,
-    var address:String,
-    var listOrder: List<Order>? = null
+    var address: String,
+    var listOrder: List<Order>? = null,
+    var tokenMoMo: String? = null
 )

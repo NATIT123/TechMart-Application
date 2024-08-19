@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/WhiteSmoke"
+    android:background="@color/White"
     android:orientation="vertical"
     tools:context=".fragments.CongratsBottomSheetFragment">
 
@@ -33,6 +33,7 @@
         android:src="@drawable/orderplace" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:textColor="@color/White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_80sdp"
