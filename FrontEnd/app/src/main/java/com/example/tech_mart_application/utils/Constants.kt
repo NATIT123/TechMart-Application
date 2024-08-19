@@ -13,7 +13,7 @@ class Constants {
         const val KEY_USER_IMAGE = "Image"
         const val KEY_USER_ADDRESS = "Address"
         const val KEY_USER_ID = "id"
-        const val LIST_PRODUCT= "ListProduct"
+        const val LIST_PRODUCT = "ListProduct"
         const val KEY_IS_SIGNED_IN = "signedIn"
         const val SALT_ROUNDS = 12
         const val OPTION_FORGOT_PASSWORD = 10
@@ -21,5 +21,6 @@ class Constants {
         const val KEY_FORGOT_PASSWORD = "KeyForgotPassword"
         const val KEY_CHANGE_PASSWORD = "KeyChangePassword"
         const val KEY_RC_SIGN_IN = 20
+        const val API_KEY_GEMINI = "AIzaSyDY1B4nMYahRe4Wfj2Gzz6YqgdYdIQV2xk"
     }
 }

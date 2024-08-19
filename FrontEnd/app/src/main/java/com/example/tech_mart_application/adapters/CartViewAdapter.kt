@@ -22,8 +22,8 @@ class CartViewAdapter(private val listProduct: MutableList<Product>) :
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val listProduct = listProduct[position]
-        holder.layoutViewCartBinding.product = listProduct
+        val product = listProduct[position]
+        holder.layoutViewCartBinding.productDetail = product
     }
 
 }

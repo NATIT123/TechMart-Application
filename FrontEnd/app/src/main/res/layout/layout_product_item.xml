@@ -7,6 +7,8 @@
         <variable
             name="ProductDetail"
             type="com.example.tech_mart_application.models.Product" />
+
+        <import type="String"/>
     </data>
 
     <androidx.cardview.widget.CardView
@@ -60,7 +62,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{'$'+ProductDetail.price }"
+                    android:text="@{'$'+Double.toString(ProductDetail.price)}"
                     android:textColor="@color/LawnGreen"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />

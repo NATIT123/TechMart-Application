@@ -25,11 +25,6 @@ class AllProductActivity : AppCompatActivity() {
 
 
     private fun loadProduct() {
-        listProduct.add(Product(name = "1"))
-        listProduct.add(Product(name = "1"))
-        listProduct.add(Product(name = "1"))
-        listProduct.add(Product(name = "1"))
-        listProduct.add(Product(name = "1"))
     }
 
     private fun loadRecyclerView() {

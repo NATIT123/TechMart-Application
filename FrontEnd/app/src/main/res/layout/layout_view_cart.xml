@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="Product"
+            name="ProductDetail"
             type="com.example.tech_mart_application.models.Product" />
     </data>
 
@@ -41,14 +41,14 @@
                     android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Product.name}"
+                    android:text="@{ProductDetail.name}"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{'$'+Double.toString(Product.price*Product.quantity)}"
+                    android:text="@{'$'+Double.toString(ProductDetail.price*ProductDetail.quantity)}"
                     android:textColor="@color/DeepSkyBlue" />
 
                 <TextView
@@ -58,7 +58,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:gravity="bottom"
-                    android:text="@{'$'+Double.toString(Product.price)}"
+                    android:text="@{'$'+Double.toString(ProductDetail.price)}"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -86,7 +86,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:gravity="center_vertical"
-                    android:text="@{Product.quantity}"
+                    android:text="@{ProductDetail.quantity}"
                     android:textColor="@color/Black"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />

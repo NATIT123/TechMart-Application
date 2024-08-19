@@ -115,4 +115,7 @@ dependencies {
     //Momo
     implementation ("com.github.momo-wallet:mobile-sdk:1.0.7")
 
+    //Gemini
+    implementation("com.google.ai.client.generativeai:generativeai:0.7.0")
+
 }

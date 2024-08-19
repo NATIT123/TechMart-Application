@@ -1,6 +1,7 @@
 package com.example.tech_mart_application.database
 
 import androidx.room.TypeConverter
+import com.example.tech_mart_application.models.Category
 import com.example.tech_mart_application.models.Order
 import com.example.tech_mart_application.models.Product
 import com.google.gson.Gson
@@ -50,6 +51,16 @@ class ProductTypeConvertor {
     @TypeConverter
     fun toListImage(image: String?): List<String>? {
         return image?.split(",")
+    }
+
+    @TypeConverter
+    fun fromCategory(category:Category):String?{
+        return category.id
+    }
+
+    @TypeConverter
+    fun toCategory(id:String):Category{
+        return Category(id=id)
     }
 
 }

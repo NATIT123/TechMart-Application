@@ -22,6 +22,7 @@ class AllProductViewAdapter(private val listProduct: MutableList<Product>) :
     }
 
     override fun onBindViewHolder(holder: AllProductViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val product = listProduct[position]
+        holder.layoutProductItemBinding.productDetail = product
     }
 }

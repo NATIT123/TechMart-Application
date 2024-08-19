@@ -61,7 +61,6 @@ class ProductViewModel @SuppressLint("StaticFieldLeak") constructor(
         listCategory.clear()
         listProduct.add(
             Product(
-                "1", "1", listOf(), "1", 1, 1.1, 1.1, "Apple"
             )
         )
         listCategory.add(
@@ -82,61 +81,7 @@ class ProductViewModel @SuppressLint("StaticFieldLeak") constructor(
     fun getDataRecommend() {
         listRecommend.clear()
         listRecommend.add(
-            Product(
-                "1",
-                "Product1",
-                listOf(),
-                "Description1",
-                R.drawable.avatar,
-                1.1,
-                1.1,
-                "",
-                Date(),
-                "Apple"
-            ),
-        )
-        listRecommend.add(
-            Product(
-                "1",
-                "Product1",
-                listOf(),
-                "Description1",
-                R.drawable.avatar,
-                1.1,
-                1.1,
-                "",
-                Date(),
-                "Apple"
-            ),
-        )
-        listRecommend.add(
-            Product(
-                "1",
-                "Product1",
-                listOf(),
-                "Description1",
-                R.drawable.avatar,
-                1.1,
-                1.1,
-                "",
-                Date(),
-                "Apple"
-            ),
-        )
-
-        listRecommend.add(
-            Product(
-                "1",
-                "Product1",
-                listOf(),
-                "Description1",
-                R.drawable.avatar,
-                1.1,
-                1.1,
-                "",
-                Date(),
-                "Apple"
-            ),
+            Product("Test", "1")
         )
 
         recommendLiveData.postValue(listRecommend)
@@ -173,9 +118,6 @@ class ProductViewModel @SuppressLint("StaticFieldLeak") constructor(
     fun observerCart(): MutableLiveData<MutableList<Product>> {
         return cartLiveData
     }
-
-
-
 
 
 }
