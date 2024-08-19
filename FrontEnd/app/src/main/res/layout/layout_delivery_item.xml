@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="OrderDetail"
             type="com.example.tech_mart_application.models.Order" />
+
+        <import type="String" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -30,7 +33,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@"
+                    android:text="@{OrderDetail.user.fullName}"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
 
@@ -45,8 +48,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Not Received"
-                    android:textColor="@color/Red"
+                    android:text="@{OrderDetail.orderStatus}"
+                    android:textColor="@{OrderDetail.orderStatus.equals(`Received`) ? @color/Green : (OrderDetail.orderStatus.equals(`Not Received`) ? @color/Red : @color/LightGrey)}"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -59,7 +62,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery"
+                    android:text="@string/delivery"
                     android:textColor="@color/Black"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -69,7 +72,7 @@
                     android:layout_height="@dimen/_24sdp"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:backgroundTint="@color/Green"
+                    android:backgroundTint="@{OrderDetail.orderStatus.equals(`Received`) ? @color/Green : (OrderDetail.orderStatus.equals(`Not Received`) ? @color/Red : @color/LightGrey)}"
                     app:cardCornerRadius="@dimen/_22sdp" />
             </LinearLayout>
         </LinearLayout>

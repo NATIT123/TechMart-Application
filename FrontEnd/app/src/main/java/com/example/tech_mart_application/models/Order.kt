@@ -10,5 +10,6 @@ class Order(
     var listProduct: List<Product>? = null,
     var orderStatus: String = "1",
     var statusDate: String = "1",
-    var category: Category? = null
+    var category: Category? = null,
+    var user: User? = null
 )
