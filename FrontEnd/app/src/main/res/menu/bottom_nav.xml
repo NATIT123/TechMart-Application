@@ -21,11 +21,6 @@
         android:title="@string/order" />
 
     <item
-        android:id="@+id/historyFragment"
-        android:icon="@drawable/baseline_history_24"
-        android:title="History" />
-
-    <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/baseline_account_circle_24"
         android:title="@string/profile" />

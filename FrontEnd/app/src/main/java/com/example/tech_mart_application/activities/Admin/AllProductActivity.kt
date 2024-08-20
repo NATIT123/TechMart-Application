@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.adapters.AllProductViewAdapter
 import com.example.tech_mart_application.databinding.ActivityAllProductBinding
+import com.example.tech_mart_application.models.Category
 import com.example.tech_mart_application.models.Product
+import kotlin.concurrent.timerTask
 
 class AllProductActivity : AppCompatActivity() {
 
@@ -25,6 +27,8 @@ class AllProductActivity : AppCompatActivity() {
 
 
     private fun loadProduct() {
+        val category = Category(title = "Category")
+        listProduct.add(Product(category = category))
     }
 
     private fun loadRecyclerView() {

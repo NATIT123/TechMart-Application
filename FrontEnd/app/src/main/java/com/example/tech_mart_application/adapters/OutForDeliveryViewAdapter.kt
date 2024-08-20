@@ -25,7 +25,7 @@ class OutForDeliveryViewAdapter(private val listOrder: MutableList<Order>) :
     override fun onBindViewHolder(holder: OutForDeliveryViewHolder, position: Int) {
         val order = listOrder[position]
         holder.layoutOutForDeliveryBinding.apply {
-            orderDetail = order
+            orderDetailItem = order
         }
     }
 }

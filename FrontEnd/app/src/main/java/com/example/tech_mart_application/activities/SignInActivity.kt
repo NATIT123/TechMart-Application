@@ -29,7 +29,6 @@ import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_IMAGE
 import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
-import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

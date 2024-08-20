@@ -26,7 +26,7 @@ class OfferViewAdapter(private val listOffer: MutableList<Offer>) :
     override fun onBindViewHolder(holder: OfferViewHolder, position: Int) {
         val offer = listOffer[position]
         holder.layoutOfferItemBinding.apply {
-
+            offerDetail = offer
         }
     }
 }

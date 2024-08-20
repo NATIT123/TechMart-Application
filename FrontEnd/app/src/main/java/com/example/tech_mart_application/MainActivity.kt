@@ -26,15 +26,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
 
 
-
     val viewModel: ProductViewModel by lazy {
         val productDatabase = ProductDatabase.getInstance(this)
-        val productViewModelFactory = ProductViewModelFactory(productDatabase,applicationContext)
+        val productViewModelFactory = ProductViewModelFactory(productDatabase, applicationContext)
         ViewModelProvider(this, productViewModelFactory)[ProductViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -89,10 +89,10 @@ class MainActivity : AppCompatActivity() {
                 setTitle("Confirm Exit")
                 setMessage("Are you sure you want to exist?")
                 setCancelable(false)
-                setPositiveButton("Yes") { dialogInterface, i ->
+                setPositiveButton("Yes") { _, _ ->
                     finish()
                 }
-                setPositiveButton("No") { dialogInterface, i ->
+                setPositiveButton("No") { dialogInterface, _ ->
                     dialogInterface.dismiss()
                 }
                 create()

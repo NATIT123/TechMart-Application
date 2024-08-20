@@ -8,7 +8,6 @@
             name="ItemsDetail"
             type="com.example.tech_mart_application.models.Items" />
 
-        <import type="String" />
     </data>
 
     <androidx.cardview.widget.CardView

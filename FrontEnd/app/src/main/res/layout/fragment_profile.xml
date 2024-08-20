@@ -1,60 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
 
-    <TextView
-        android:padding="@dimen/_10sdp"
-        android:textSize="@dimen/_15sdp"
-        android:textStyle="bold"
-        android:text="Settings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <LinearLayout
-        android:padding="@dimen/_5sdp"
-        android:orientation="horizontal"
+        android:background="@color/WhiteSmoke"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_100sdp">
+        android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:src="@drawable/avatar"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:text="Settings"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+
         <LinearLayout
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
 
-            <TextView
-                android:layout_gravity="start"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                android:text="Name User"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/avatar" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_gravity="start"
-                android:textColor="@color/LightSlateGray"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="Edit personal details"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:text="Name User"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Edit personal details"
+                    android:textColor="@color/LightSlateGray" />
+            </LinearLayout>
+
+            <ImageButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/background_category_img"
+                android:src="@drawable/baseline_navigate_next_24" />
         </LinearLayout>
 
-        <ImageButton
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_gravity="center"
-            android:background="@drawable/background_category_img"
-            android:src="@drawable/baseline_navigate_next_24"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="Orders"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/baseline_shopping_cart_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:text="All Orders"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_category_img"
+                    android:src="@drawable/baseline_navigate_next_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:text="Track Orders"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/baseline_search_24" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_category_img"
+                    android:src="@drawable/baseline_navigate_next_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/baseline_payment_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:text="Billing And Address"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_category_img"
+                    android:src="@drawable/baseline_navigate_next_24" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="Notifications"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/baseline_notifications_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:text="Notifications"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_category_img"
+                android:src="@drawable/baseline_navigate_next_24" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:text="Regional"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/White"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/baseline_shopping_cart_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:text="Language"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_category_img"
+                    android:src="@drawable/baseline_navigate_next_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:text="Logout"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/baseline_logout_24" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_category_img"
+                    android:src="@drawable/baseline_navigate_next_24" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     </LinearLayout>
 
-</LinearLayout>
+
+
+
+
+
+
+</ScrollView>

@@ -26,7 +26,6 @@ class OrderViewAdapter(private val listOrder: MutableList<Order>) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         var order = listOrder[position]
-        var title = ""
         holder.layoutItemOrdersBinding.apply {
             orderDetail = order
         }
