@@ -178,7 +178,8 @@ class SignUpActivity : AppCompatActivity() {
             fullName = binding.edtFullName.text.toString().trim(),
             password = binding.edtPassword.text.toString().trim(),
             image = encodeImage(getImageDefault(image)),
-            address = binding.edtAddress.text.toString().trim()
+            address = binding.edtAddress.text.toString().trim(),
+            role = "User"
         )
 
         //Handle ApiRegister
@@ -235,7 +236,7 @@ class SignUpActivity : AppCompatActivity() {
                                     KEY_USER_EMAIL,
                                     user.email
                                 );
-                                preferenceManager.putString(KEY_USER_ADDRESS,user.address)
+                                preferenceManager.putString(KEY_USER_ADDRESS, user.address)
                                 preferenceManager.putBoolean(KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(KEY_USER_ID, body.data.split(':')[1])
                                 preferenceManager.putString(

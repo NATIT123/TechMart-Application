@@ -1,6 +1,7 @@
 package com.example.tech_mart_application
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.example.tech_mart_application.activities.ChatBotActivity
 import com.example.tech_mart_application.database.ProductDatabase
 import com.example.tech_mart_application.databinding.ActivityMainBinding
 import com.example.tech_mart_application.viewModel.ProductViewModel
@@ -78,6 +80,12 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         NavigationUI.setupWithNavController(binding.myBottomNav, navController)
+
+        //Chat Bot
+        binding.chatbot.setOnClickListener {
+            val intent = Intent(this@MainActivity,ChatBotActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun exitOnBackPressed() {

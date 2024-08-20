@@ -13,11 +13,18 @@ import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.LayoutOfficialCategoryBinding
 import com.example.tech_mart_application.models.Category
 
-class CategoryViewAdapter(private val listCategory: MutableList<Category>,private val context:Context) :
+class CategoryViewAdapter(
+    private val listCategory: MutableList<Category>,
+    private val mOnClickCategory: mClickCategoryListener
+) :
     RecyclerView.Adapter<CategoryViewAdapter.CategoryViewHolder>() {
 
-    private var selectedPosition = -1
-    private var lastSelectedPosition = -1
+    private var selectedPosition = 0
+    private var lastSelectedPosition = 0
+
+    interface mClickCategoryListener {
+        fun onClick(category: Category)
+    }
 
     inner class CategoryViewHolder(val layoutOfficialCategoryBinding: LayoutOfficialCategoryBinding) :
         RecyclerView.ViewHolder(layoutOfficialCategoryBinding.root)
@@ -47,18 +54,18 @@ class CategoryViewAdapter(private val listCategory: MutableList<Category>,privat
                 selectedPosition = position
                 notifyItemChanged(lastSelectedPosition)
                 notifyItemChanged(selectedPosition)
+                mOnClickCategory.onClick(category)
             }
             tvCategory.text = category.title
 
             if (selectedPosition == position) {
                 imgCategory.setBackgroundResource(0)
                 mainLayout.setBackgroundResource(R.drawable.background_blue_corner_15)
-                tvCategory.visibility  = View.VISIBLE
-            }
-            else{
+                tvCategory.visibility = View.VISIBLE
+            } else {
                 imgCategory.setBackgroundResource(0)
                 mainLayout.setBackgroundResource(R.drawable.background_category_img)
-                tvCategory.visibility  = View.GONE
+                tvCategory.visibility = View.GONE
             }
         }
 

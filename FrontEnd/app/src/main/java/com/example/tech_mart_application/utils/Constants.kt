@@ -22,5 +22,7 @@ class Constants {
         const val KEY_CHANGE_PASSWORD = "KeyChangePassword"
         const val KEY_RC_SIGN_IN = 20
         const val API_KEY_GEMINI = "AIzaSyDY1B4nMYahRe4Wfj2Gzz6YqgdYdIQV2xk"
+        const val VIEW_TYPE_USER = 1
+        const val VIEW_TYPE_MODEL = 2
     }
 }

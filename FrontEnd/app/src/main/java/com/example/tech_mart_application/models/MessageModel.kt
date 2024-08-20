@@ -1,3 +1,5 @@
 package com.example.tech_mart_application.models
 
-class MessageModel(val message: String, val role: String    )
+import java.util.Date
+
+class MessageModel(val message: String, val role: String, var date: Date)

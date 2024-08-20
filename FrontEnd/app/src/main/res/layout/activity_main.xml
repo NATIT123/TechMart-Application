@@ -11,6 +11,10 @@
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
+        android:backgroundTint="@color/LightSkyBlue"
+        app:itemIconTint="@color/custom_color_nav"
+        app:itemTextColor="@color/custom_color_nav"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -23,47 +27,70 @@
             />
     </com.google.android.material.navigation.NavigationView>
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/DeepSkyBlue"
-            android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/DeepSkyBlue"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/DeepSkyBlue"
+                android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/container_frame"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/myBottomNav"
-            app:labelVisibilityMode="labeled"
-            app:itemTextAppearanceActiveBoldEnabled="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_bottom_nav"
-            app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
-            app:itemIconTint="@color/custom_color_nav"
-            app:itemTextColor="@color/custom_color_nav"
-            app:menu="@menu/bottom_nav" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/DeepSkyBlue"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
-    </LinearLayout>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/container_frame"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_graph" />
+
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/myBottomNav"
+                app:labelVisibilityMode="labeled"
+                app:itemTextAppearanceActiveBoldEnabled="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/background_bottom_nav"
+                app:itemActiveIndicatorStyle="@style/Theme.BottomNavigationView.ActiveIndicator"
+                app:itemIconTint="@color/custom_color_nav"
+                app:itemTextColor="@color/custom_color_nav"
+                app:menu="@menu/bottom_nav" />
+
+
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:backgroundTint="@color/DeepSkyBlue"
+            android:id="@+id/chatbot"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="@dimen/_80sdp"
+            android:src="@drawable/baseline_chat_24"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

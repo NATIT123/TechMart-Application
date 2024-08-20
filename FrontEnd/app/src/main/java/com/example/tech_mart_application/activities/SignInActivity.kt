@@ -83,7 +83,7 @@ class SignInActivity : AppCompatActivity() {
                     userAuth?.email!!,
                     userAuth.phoneNumber ?: "unregister",
                     userAuth.displayName!!,
-                    "", "Empty"
+                    "", "Empty", role = "User"
                 )
                 handleLoginGoogle(user)
             } else {
@@ -199,7 +199,8 @@ class SignInActivity : AppCompatActivity() {
             image = "",
             phone = "",
             fullName = "",
-            address = ""
+            address = "",
+            role = ""
         )
         handleLoginUser(user)
 

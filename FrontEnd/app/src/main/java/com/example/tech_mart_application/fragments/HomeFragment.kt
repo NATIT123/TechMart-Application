@@ -28,7 +28,7 @@ import com.example.tech_mart_application.models.Product
 import com.example.tech_mart_application.viewModel.ProductViewModel
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CategoryViewAdapter.mClickCategoryListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var mBannerViewAdapter: BannerViewAdapter
@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
     private lateinit var mRecommendViewAdapter: RecommendationViewAdapter
     private lateinit var mCategoryViewAdapter: CategoryViewAdapter
     private lateinit var productViewModel: ProductViewModel
+    private var titleCategory = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -96,7 +97,7 @@ class HomeFragment : Fragment() {
         binding.isLoadingOfficial = true
         productViewModel.observerCategory().observe(viewLifecycleOwner) {
             listCategory = it
-            mCategoryViewAdapter = CategoryViewAdapter(listCategory, requireContext())
+            mCategoryViewAdapter = CategoryViewAdapter(listCategory,this)
             binding.rcvOfficialCategory.apply {
                 adapter = mCategoryViewAdapter
                 layoutManager =
@@ -119,6 +120,10 @@ class HomeFragment : Fragment() {
                 binding.isLoadingRecommendation = false
             }
         }
+    }
+
+    override fun onClick(category: Category) {
+        Log.d("MyApp", category.title)
     }
 }
 

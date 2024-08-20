@@ -6,7 +6,7 @@ const User = mongoose.model("UserInfo");
 const saltRounds = parseInt(process.env.saltRounds) || 10;
 
 const registerUser = async (req, res) => {
-  const { fullName, address, email, phone, password, image } = req.body;
+  const { fullName, address, email, phone, password, image, role } = req.body;
 
   const oldUser = await User.findOne({ email: email });
   let encryptPassword;
@@ -31,6 +31,7 @@ const registerUser = async (req, res) => {
         password: encryptPassword,
         image,
         address,
+        role,
       };
       const savedUser = await User.collection.insertOne(userObject);
       console.log(savedUser.insertedId.toString());
