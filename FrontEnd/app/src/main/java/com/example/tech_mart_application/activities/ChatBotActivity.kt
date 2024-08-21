@@ -48,6 +48,11 @@ class ChatBotActivity : AppCompatActivity() {
 
         loadRecyclerView()
 
+        //Back Button
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
+
 
     }
 

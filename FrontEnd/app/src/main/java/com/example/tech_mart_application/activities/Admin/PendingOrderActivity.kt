@@ -22,16 +22,23 @@ class PendingOrderActivity : AppCompatActivity() {
 
         loadPendingOrder()
         loadRecyclerView()
+
+        //Btn Back
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun loadPendingOrder() {
+        listItem.add(Items())
+        listItem.add(Items())
         listItem.add(Items())
     }
 
     private fun loadRecyclerView() {
         binding.isLoading = true
         binding.isEmpty = listItem.isEmpty()
-        if (listItem.isEmpty()) {
+        if (listItem.isNotEmpty()) {
             mPendingOrderViewAdapter = PendingOrderViewAdapter(listItem)
             binding.rcvPending.apply {
                 adapter = mPendingOrderViewAdapter
@@ -42,5 +49,6 @@ class PendingOrderActivity : AppCompatActivity() {
                 )
             }
         }
+        binding.isLoading = false
     }
 }

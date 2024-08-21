@@ -7,6 +7,7 @@ import com.example.tech_mart_application.R
 import com.example.tech_mart_application.adapters.OutForDeliveryViewAdapter
 import com.example.tech_mart_application.databinding.ActivityOutForDeliveryBinding
 import com.example.tech_mart_application.models.Order
+import com.example.tech_mart_application.models.User
 
 class OutForDeliveryActivity : AppCompatActivity() {
 
@@ -20,12 +21,16 @@ class OutForDeliveryActivity : AppCompatActivity() {
 
         loadOrder()
         loadRecyclerView()
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun loadOrder() {
-        listOrder.add(Order(statusDate = "Received"))
-        listOrder.add(Order(statusDate = "Not Received"))
-        listOrder.add(Order(statusDate = "Pending"))
+        listOrder.add(Order(orderStatus = "Received"))
+        listOrder.add(Order(orderStatus = "Not Received"))
+        listOrder.add(Order(orderStatus = "Pending"))
     }
 
     private fun loadRecyclerView() {
@@ -42,5 +47,6 @@ class OutForDeliveryActivity : AppCompatActivity() {
                 )
             }
         }
+        binding.isLoading = false
     }
 }

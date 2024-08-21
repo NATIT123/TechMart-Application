@@ -7,6 +7,7 @@ const {
   changePassword,
   detailUser,
   resgisterUserByGoogle,
+  updateUser,
 } = require("../controllers/UserController");
 
 router.post("/register", registerUser);
@@ -20,5 +21,7 @@ router.get("/changePassword/:id", changePassword);
 router.get("/detailUser", detailUser);
 
 router.post("/registerByGoogle", resgisterUserByGoogle);
+
+router.put("/update/:id", updateUser);
 
 module.exports = router;

@@ -23,6 +23,11 @@ class NotificationActivity : AppCompatActivity() {
 
         loadDataNotification()
         loadRecyclerView()
+        
+        //Button Back
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
 
     }
 
@@ -38,12 +43,6 @@ class NotificationActivity : AppCompatActivity() {
                         this@NotificationActivity,
                         LinearLayoutManager.VERTICAL,
                         false
-                    )
-                    addItemDecoration(
-                        DividerItemDecoration(
-                            this@NotificationActivity,
-                            DividerItemDecoration.VERTICAL
-                        )
                     )
                 }
             }

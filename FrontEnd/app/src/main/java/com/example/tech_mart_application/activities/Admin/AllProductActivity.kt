@@ -23,6 +23,11 @@ class AllProductActivity : AppCompatActivity() {
 
         loadProduct()
         loadRecyclerView()
+
+        //BtnBack
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
 
@@ -43,14 +48,9 @@ class AllProductActivity : AppCompatActivity() {
                     LinearLayoutManager.VERTICAL,
                     false
                 )
-                addItemDecoration(
-                    DividerItemDecoration(
-                        this@AllProductActivity,
-                        DividerItemDecoration.VERTICAL,
-                    )
-                )
             }
         }
+        binding.isLoading = false
     }
 
 

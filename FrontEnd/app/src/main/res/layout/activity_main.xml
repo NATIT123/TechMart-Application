@@ -11,10 +11,10 @@
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
-        android:backgroundTint="@color/LightSkyBlue"
+        android:id="@+id/navigation_view"
+        android:backgroundTint="@color/LightGrey"
         app:itemIconTint="@color/custom_color_nav"
         app:itemTextColor="@color/custom_color_nav"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -86,7 +86,8 @@
             android:layout_marginBottom="@dimen/_80sdp"
             android:src="@drawable/baseline_chat_24"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:contentDescription="s" />
 
     </RelativeLayout>
 

@@ -22,6 +22,10 @@ class OffersActivity : AppCompatActivity() {
 
         loadOffer()
         loadRecyclerView()
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun loadOffer() {

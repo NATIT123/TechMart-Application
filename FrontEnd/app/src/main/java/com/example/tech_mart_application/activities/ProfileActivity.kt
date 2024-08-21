@@ -25,12 +25,18 @@ class ProfileActivity : AppCompatActivity() {
         preferenceManager = PreferenceManager(applicationContext)
         preferenceManager.instance()
 
-        loadData()
+//        loadData()
 
         binding.btnEdit.setOnClickListener {
             val intent = Intent(this@ProfileActivity,EditProfileActivity::class.java)
             startActivity(intent)
         }
+
+        binding.btnBack.setOnClickListener {
+           finish()
+        }
+
+
     }
 
     private fun loadData(){

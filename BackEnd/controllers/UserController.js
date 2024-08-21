@@ -195,6 +195,28 @@ const detailUser = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { name, address, email, phone, image } = req.body;
+  try {
+    await Student.updateOne(
+      { _id: id },
+      {
+        $set: {
+          name,
+          email,
+          phone,
+          image,
+          address,
+        },
+      }
+    );
+    res.send({ status: "ok", data: "Update User Succeessfully" });
+  } catch (err) {
+    res.send({ status: "error", err: err.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
@@ -202,4 +224,5 @@ module.exports = {
   changePassword,
   detailUser,
   resgisterUserByGoogle,
+  updateUser,
 };

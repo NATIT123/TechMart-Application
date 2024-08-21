@@ -7,10 +7,10 @@
     tools:context=".fragments.ProfileFragment">
 
     <LinearLayout
-        android:background="@color/WhiteSmoke"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/WhiteSmoke"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -155,7 +155,32 @@
                     android:src="@drawable/baseline_navigate_next_24" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/baseline_history_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:text="History Purchase"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_category_img"
+                    android:src="@drawable/baseline_navigate_next_24" />
+            </LinearLayout>
+
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -166,6 +191,7 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:background="@color/White"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -176,17 +202,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/baseline_notifications_24"
                 android:drawablePadding="@dimen/_10sdp"
                 android:text="Notifications"
                 android:textSize="@dimen/_14sdp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/baseline_notifications_24" />
 
-            <ImageButton
+            <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_category_img"
-                android:src="@drawable/baseline_navigate_next_24" />
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 
         <TextView
@@ -201,6 +226,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@color/White"
             android:orientation="vertical">
 
@@ -229,6 +255,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -256,11 +283,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-
-
-
 
 
 </ScrollView>

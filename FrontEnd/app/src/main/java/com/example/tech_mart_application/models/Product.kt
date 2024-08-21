@@ -18,5 +18,5 @@ class Product(
     var color: String = "a",
     var createdOn: Date = Date(),
     var vendor: String = "a",
-    var quantity: Int = 0,
+    var quantity: Int = 1,
 )

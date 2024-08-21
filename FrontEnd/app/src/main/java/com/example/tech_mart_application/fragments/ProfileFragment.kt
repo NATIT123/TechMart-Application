@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.activities.ProfileActivity
@@ -27,11 +28,30 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         preferenceManager = PreferenceManager(requireContext())
         preferenceManager.instance()
-        loadData()
+//        loadData()
 
         binding.layoutProfile.setOnClickListener {
             val intent = Intent(requireActivity(), ProfileActivity::class.java)
             startActivity(intent)
+        }
+
+        binding.btnLogout.setOnClickListener {
+
+            val dialog = AlertDialog.Builder(requireActivity())
+            dialog.apply {
+                setTitle("Confirm Logout")
+                setMessage("Are you sure you want to logout?")
+                setCancelable(false)
+                setPositiveButton("Yes") { _, _ ->
+                    preferenceManager.clear()
+                    requireActivity().finishAffinity()
+                }
+                setNegativeButton("No") { dialogInterface, _ ->
+                    dialogInterface.dismiss()
+                }
+                create()
+                show()
+            }
         }
     }
 

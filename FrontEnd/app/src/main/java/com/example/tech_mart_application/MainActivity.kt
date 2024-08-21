@@ -6,6 +6,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
+import android.widget.Toast
 import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -20,8 +22,9 @@ import com.example.tech_mart_application.database.ProductDatabase
 import com.example.tech_mart_application.databinding.ActivityMainBinding
 import com.example.tech_mart_application.viewModel.ProductViewModel
 import com.example.tech_mart_application.viewModel.ProductViewModelFactory
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -81,12 +84,16 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(binding.myBottomNav, navController)
 
+        binding.navigationView.setNavigationItemSelectedListener(this)
+
         //Chat Bot
         binding.chatbot.setOnClickListener {
-            val intent = Intent(this@MainActivity,ChatBotActivity::class.java)
+            val intent = Intent(this@MainActivity, ChatBotActivity::class.java)
             startActivity(intent)
         }
     }
+
+
 
     private fun exitOnBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -100,13 +107,27 @@ class MainActivity : AppCompatActivity() {
                 setPositiveButton("Yes") { _, _ ->
                     finish()
                 }
-                setPositiveButton("No") { dialogInterface, _ ->
+                setNegativeButton("No") { dialogInterface, _ ->
                     dialogInterface.dismiss()
                 }
                 create()
                 show()
             }
 
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.wishlist->{
+                Toast.makeText(this@MainActivity, "Test", Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            else -> {
+                Toast.makeText(this@MainActivity, "Test", Toast.LENGTH_SHORT).show()
+                 false
+            }
         }
     }
 }
