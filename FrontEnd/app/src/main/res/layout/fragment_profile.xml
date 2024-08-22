@@ -83,29 +83,6 @@
             android:background="@color/White"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/_10sdp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_weight="1"
-                    android:drawableStart="@drawable/baseline_shopping_cart_24"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:text="All Orders"
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold" />
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_category_img"
-                    android:src="@drawable/baseline_navigate_next_24" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -156,6 +133,32 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btnOffers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:text="Coupon Offer"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/baseline_local_offer_24" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/background_category_img"
+                    android:src="@drawable/baseline_navigate_next_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnHistory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -191,9 +194,9 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:background="@color/White"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/White"
             android:orientation="horizontal"
             android:padding="@dimen/_10sdp">
 
@@ -211,6 +214,7 @@
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="true"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
         </LinearLayout>
 

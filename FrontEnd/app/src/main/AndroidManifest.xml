@@ -46,9 +46,9 @@
         <activity
             android:name=".activities.Admin.AddProductActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".activities.Admin.AdminActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".activities.Admin.AdminActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.OffersActivity"
             android:exported="false" />
@@ -72,9 +72,9 @@
         <activity
             android:name=".activities.OnboardingActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.ProfileActivity"
             android:exported="false" />
@@ -90,17 +90,8 @@
         <activity
             android:name=".activities.SignInActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".activities.SplashScreenActivity"-->
-<!--            android:exported="true" >-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
         <activity
-            android:name=".activities.Admin.AdminActivity"
+            android:name=".activities.SplashScreenActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -44,6 +44,13 @@ class HistoryProductActivity : AppCompatActivity() {
                 adapter = mHistoryPurchaseViewAdapter
                 layoutManager = LinearLayoutManager(this@HistoryProductActivity)
             }
+
+            binding.rcvPreviousBuy.apply {
+                adapter = mHistoryPurchaseViewAdapter
+                layoutManager = LinearLayoutManager(this@HistoryProductActivity)
+            }
+
+
         }
         binding.isLoading = false
     }

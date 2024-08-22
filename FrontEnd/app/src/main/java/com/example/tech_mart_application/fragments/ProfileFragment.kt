@@ -10,8 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.tech_mart_application.R
+import com.example.tech_mart_application.activities.HistoryProductActivity
+import com.example.tech_mart_application.activities.OffersActivity
 import com.example.tech_mart_application.activities.ProfileActivity
 import com.example.tech_mart_application.databinding.FragmentProfileBinding
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
@@ -28,7 +31,7 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         preferenceManager = PreferenceManager(requireContext())
         preferenceManager.instance()
-//        loadData()
+        loadData()
 
         binding.layoutProfile.setOnClickListener {
             val intent = Intent(requireActivity(), ProfileActivity::class.java)
@@ -52,6 +55,19 @@ class ProfileFragment : Fragment() {
                 create()
                 show()
             }
+        }
+
+
+        //History Purchase
+        binding.btnHistory.setOnClickListener {
+            val intent = Intent(requireActivity(), HistoryProductActivity::class.java)
+            startActivity(intent)
+        }
+
+        //Offers
+        binding.btnOffers.setOnClickListener {
+            val intent = Intent(requireActivity(), OffersActivity::class.java)
+            startActivity(intent)
         }
     }
 

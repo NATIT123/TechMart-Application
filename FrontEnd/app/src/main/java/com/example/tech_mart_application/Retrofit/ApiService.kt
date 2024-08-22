@@ -58,7 +58,7 @@ interface ApiService {
         @Query("password") password: String
     ): Call<DataResponse>
 
-
-
+    @POST("user/updateUser")
+    fun updateUser(@Path("id") id: String, @Body user: User): Call<DataResponse>
 
 }

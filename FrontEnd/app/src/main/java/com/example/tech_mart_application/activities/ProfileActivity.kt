@@ -6,6 +6,8 @@ import android.os.Bundle
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivityProfileBinding
 import com.example.tech_mart_application.models.User
+import com.example.tech_mart_application.utils.Constants
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_FORGOT_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ADDRESS
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
@@ -25,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
         preferenceManager = PreferenceManager(applicationContext)
         preferenceManager.instance()
 
-//        loadData()
+        loadData()
 
         binding.btnEdit.setOnClickListener {
             val intent = Intent(this@ProfileActivity,EditProfileActivity::class.java)
@@ -34,6 +36,13 @@ class ProfileActivity : AppCompatActivity() {
 
         binding.btnBack.setOnClickListener {
            finish()
+        }
+
+        //Button ChangePassword
+        binding.btnChangePassword.setOnClickListener {
+            val intent =Intent(this@ProfileActivity,ChangePasswordActivity::class.java)
+            intent.putExtra(KEY_FORGOT_PASSWORD, Constants.OPTION_CHANGE_PASSWORD)
+            startActivity(intent)
         }
 
 

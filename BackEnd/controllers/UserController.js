@@ -132,6 +132,7 @@ const phoneIsExist = async (req, res) => {
 const changePassword = async (req, res) => {
   const { id } = req.params;
   const { password } = req.query;
+
   let encryptPassword;
   try {
     const ObjectId = mongoose.Types.ObjectId.createFromHexString(id);
@@ -159,7 +160,7 @@ const changePassword = async (req, res) => {
       { _id: ObjectId },
       {
         $set: {
-          encryptPassword,
+          password: encryptPassword,
         },
       }
     );
@@ -197,14 +198,13 @@ const detailUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { name, address, email, phone, image } = req.body;
+  const { name, address, phone, image } = req.body;
   try {
     await Student.updateOne(
       { _id: id },
       {
         $set: {
           name,
-          email,
           phone,
           image,
           address,
