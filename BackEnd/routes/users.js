@@ -22,6 +22,6 @@ router.get("/detailUser", detailUser);
 
 router.post("/registerByGoogle", resgisterUserByGoogle);
 
-router.put("/update/:id", updateUser);
+router.put("/updateUser/:id", updateUser);
 
 module.exports = router;

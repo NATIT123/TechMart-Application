@@ -3,175 +3,191 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-  <data>
-    <variable
-        name="isLoading"
-        type="Boolean" />
+    <data>
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
 
 
-    <variable
-        name="User"
-        type="com.example.tech_mart_application.models.User" />
+        <variable
+            name="User"
+            type="com.example.tech_mart_application.models.User" />
 
-    <import type="android.view.View"/>
-  </data>
-
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
-      tools:context=".activities.EditProfileActivity">
+        <import type="android.view.View" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activities.EditProfileActivity">
 
-      <ImageButton
-          android:id="@+id/btnBack"
-          android:layout_width="@dimen/_30sdp"
-          android:layout_height="@dimen/_30sdp"
-          android:layout_gravity="center"
-          android:layout_marginStart="@dimen/_10sdp"
-          android:background="@drawable/background_category_img"
-          android:src="@drawable/baseline_arrow_back_24" />
-
-      <TextView
-          android:layout_marginEnd="@dimen/_20sdp"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_marginStart="@dimen/_20sdp"
-          android:layout_weight="1"
-          android:gravity="center"
-          android:text="Edit Profile"
-          android:textColor="@color/LightSlateGray"
-          android:textSize="@dimen/_16sdp"
-          android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:src="@drawable/avatar" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-      <EditText
-          android:text="@{User.fullName}"
-          android:id="@+id/edtFullName"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/_40sdp"
-          android:layout_marginStart="@dimen/_10sdp"
-          android:layout_marginTop="@dimen/_20sdp"
-          android:layout_marginEnd="@dimen/_10sdp"
-          android:background="@drawable/round_back_grey_15"
-          android:drawableStart="@drawable/baseline_people_24"
-          android:drawablePadding="@dimen/_10sdp"
-          android:focusable="true"
-          android:hint="@string/full_name"
-          android:imeOptions="actionNext"
-          android:inputType="textPersonName"
-          android:maxLines="1"
-          android:paddingStart="@dimen/_10sdp"
-          android:paddingEnd="@dimen/_10sdp" />
-
-      <EditText
-          android:text="@{User.email}"
-          android:id="@+id/edtEmail"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/_40sdp"
-          android:layout_marginStart="@dimen/_10sdp"
-          android:layout_marginTop="@dimen/_20sdp"
-          android:layout_marginEnd="@dimen/_10sdp"
-          android:background="@drawable/round_back_grey_15"
-          android:drawableStart="@drawable/baseline_email_24"
-          android:drawablePadding="@dimen/_10sdp"
-          android:focusable="true"
-          android:hint="@string/email"
-          android:imeOptions="actionNext"
-          android:inputType="textEmailAddress"
-          android:maxLines="1"
-          android:paddingStart="@dimen/_10sdp"
-          android:paddingEnd="@dimen/_10sdp" />
-
-      <EditText
-          android:text="@{User.address}"
-          android:id="@+id/edtAddress"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/_40sdp"
-          android:layout_marginStart="@dimen/_10sdp"
-          android:layout_marginTop="@dimen/_20sdp"
-          android:layout_marginEnd="@dimen/_10sdp"
-          android:background="@drawable/round_back_grey_15"
-          android:drawableStart="@drawable/baseline_location_city_24"
-          android:drawablePadding="@dimen/_10sdp"
-          android:focusable="true"
-          android:hint="Address"
-          android:imeOptions="actionNext"
-          android:inputType="textEmailAddress"
-          android:maxLines="1"
-          android:paddingStart="@dimen/_10sdp"
-          android:paddingEnd="@dimen/_10sdp" />
-
-      <EditText
-          android:text="@{User.phone}"
-          android:id="@+id/edtPhone"
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/_40sdp"
-          android:layout_marginStart="@dimen/_10sdp"
-          android:layout_marginTop="@dimen/_20sdp"
-          android:layout_marginEnd="@dimen/_10sdp"
-          android:background="@drawable/round_back_grey_15"
-          android:drawableStart="@drawable/baseline_local_phone_24"
-          android:drawablePadding="@dimen/_10sdp"
-          android:focusable="true"
-          android:hint="@string/phone"
-          android:imeOptions="actionNext"
-          android:inputType="phone|number"
-          android:maxLines="1"
-          android:paddingStart="@dimen/_10sdp"
-          android:paddingEnd="@dimen/_10sdp" />
-
-
-      <FrameLayout
-          android:layout_marginStart="@dimen/_10sdp"
-          android:layout_marginTop="@dimen/_30sdp"
-          android:layout_marginEnd="@dimen/_10sdp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:animateLayoutChanges="true">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSave"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_button_blue_15"
-            android:text="Save Profile"
-            android:textStyle="bold"
-            android:visibility="@{isLoading?View.GONE:View.VISIBLE,default=visible}" />
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:background="@drawable/background_category_img"
+                android:src="@drawable/baseline_arrow_back_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Edit Profile"
+                android:textColor="@color/LightSlateGray"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/avatar" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/baseline_add_a_photo_24" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{isLoading?View.VISIBLE:View.GONE,default=gone}" />
-        />
+            android:gravity="center"
+            android:orientation="vertical">
 
 
-      </FrameLayout>
+            <EditText
+                android:id="@+id/edtFullName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/round_back_grey_15"
+                android:drawableStart="@drawable/baseline_people_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:focusable="true"
+                android:hint="@string/full_name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@{User.fullName}" />
 
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/round_back_grey_15"
+                android:drawableStart="@drawable/baseline_email_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:focusable="true"
+                android:hint="@string/email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@{User.email}" />
+
+            <EditText
+                android:id="@+id/edtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/round_back_grey_15"
+                android:drawableStart="@drawable/baseline_location_city_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:focusable="true"
+                android:hint="Address"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@{User.address}" />
+
+            <EditText
+                android:id="@+id/edtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/round_back_grey_15"
+                android:drawableStart="@drawable/baseline_local_phone_24"
+                android:drawablePadding="@dimen/_10sdp"
+                android:focusable="true"
+                android:hint="@string/phone"
+                android:imeOptions="actionNext"
+                android:inputType="phone|number"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="@{User.phone}" />
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:animateLayoutChanges="true">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_button_blue_15"
+                    android:text="Save Profile"
+                    android:textStyle="bold"
+                    android:visibility="@{isLoading?View.GONE:View.VISIBLE,default=visible}" />
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{isLoading?View.VISIBLE:View.GONE,default=gone}" />
+                />
+
+
+            </FrameLayout>
+
+
+        </LinearLayout>
 
     </LinearLayout>
-
-  </LinearLayout>
 </layout>

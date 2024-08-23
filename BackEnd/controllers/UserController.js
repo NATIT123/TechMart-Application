@@ -95,7 +95,7 @@ const loginUser = async (req, res) => {
     if (match) {
       res.send({
         status: "ok",
-        data: `Login Succesfully:${oldUser._id.toString()}:${oldUser.fullName.toString()}:${oldUser.image.toString()}`,
+        data: `Login Succesfully:${oldUser._id.toString()}:${oldUser.fullName.toString()}:${oldUser.image.toString()}:${oldUser.address.toString()}:${oldUser.phone.toString()}`,
       });
     } else {
       return res.send({
@@ -104,7 +104,7 @@ const loginUser = async (req, res) => {
       });
     }
   } catch (err) {
-    res.send({ status: "error", data: err.message });
+    res.send({ status: "error", data: err.toString() });
   }
 };
 
@@ -172,8 +172,8 @@ const changePassword = async (req, res) => {
 
 const detailUser = async (req, res) => {
   const { email } = req.query;
-  const user = await User.findOne({ email: email });
   try {
+    const user = await User.findOne({ email: email });
     if (!user) {
       return res.send({
         status: "notok",
@@ -198,22 +198,32 @@ const detailUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { name, address, phone, image } = req.body;
+  const { name, address, phone, image, email } = req.body;
   try {
-    await Student.updateOne(
-      { _id: id },
+    const ObjectId = mongoose.Types.ObjectId.createFromHexString(id);
+    console.log(id);
+    const user = await User.findOne({ _id: ObjectId });
+    if (!user) {
+      return res.send({
+        status: "notok",
+        data: "User is not exist",
+      });
+    }
+    await User.updateOne(
+      { _id: ObjectId },
       {
         $set: {
           name,
           phone,
           image,
           address,
+          email,
         },
       }
     );
     res.send({ status: "ok", data: "Update User Succeessfully" });
   } catch (err) {
-    res.send({ status: "error", err: err.message });
+    res.send({ status: "error", data: err.message });
   }
 };
 

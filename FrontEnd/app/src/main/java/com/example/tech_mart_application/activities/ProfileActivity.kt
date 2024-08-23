@@ -48,6 +48,8 @@ class ProfileActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun loadData(){
         val fullName = preferenceManager.getString(KEY_USER_FULL_NAME)!!
         val email = preferenceManager.getString(KEY_USER_EMAIL)!!

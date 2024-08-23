@@ -27,6 +27,7 @@ import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAI
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_IMAGE
+import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -301,6 +302,11 @@ class SignInActivity : AppCompatActivity() {
                                     body.data.split(':')[2]
                                 )
                                 preferenceManager.putString(KEY_USER_IMAGE, body.data.split(':')[3])
+                                preferenceManager.putString(
+                                    KEY_USER_ADDRESS,
+                                    body.data.split(':')[4]
+                                )
+                                preferenceManager.putString(PHONE_NUMBER, body.data.split(':')[5])
                                 val intent = Intent(this@SignInActivity, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 startActivity(intent)
