@@ -198,7 +198,7 @@ const detailUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
-  const { name, address, phone, image, email } = req.body;
+  const { fullName, address, phone, image, email } = req.body;
   try {
     const ObjectId = mongoose.Types.ObjectId.createFromHexString(id);
     console.log(id);
@@ -213,7 +213,8 @@ const updateUser = async (req, res) => {
       { _id: ObjectId },
       {
         $set: {
-          name,
+          fullName,
+          email,
           phone,
           image,
           address,

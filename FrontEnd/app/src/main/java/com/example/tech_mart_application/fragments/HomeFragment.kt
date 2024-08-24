@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.activities.NotificationActivity
+import com.example.tech_mart_application.activities.SearchActivity
 import com.example.tech_mart_application.adapters.BannerViewAdapter
 import com.example.tech_mart_application.adapters.CategoryViewAdapter
 import com.example.tech_mart_application.adapters.RecommendationViewAdapter
@@ -25,6 +26,8 @@ import com.example.tech_mart_application.databinding.FragmentHomeBinding
 import com.example.tech_mart_application.models.Banner
 import com.example.tech_mart_application.models.Category
 import com.example.tech_mart_application.models.Product
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
+import com.example.tech_mart_application.utils.PreferenceManager
 import com.example.tech_mart_application.viewModel.ProductViewModel
 
 
@@ -40,6 +43,8 @@ class HomeFragment : Fragment(), CategoryViewAdapter.mClickCategoryListener {
     private lateinit var productViewModel: ProductViewModel
     private var titleCategory = ""
 
+    private lateinit var preferenceManager: PreferenceManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,6 +56,9 @@ class HomeFragment : Fragment(), CategoryViewAdapter.mClickCategoryListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         productViewModel = (activity as MainActivity).viewModel
+
+        preferenceManager = PreferenceManager(requireContext())
+        preferenceManager.instance()
 
 
         //Banner
@@ -72,7 +80,26 @@ class HomeFragment : Fragment(), CategoryViewAdapter.mClickCategoryListener {
             startActivity(intent)
         }
 
+        //Search View
 
+
+        binding.imgSearch.setOnClickListener {
+            val intent = Intent(requireContext(), SearchActivity::class.java)
+            startActivity(intent)
+        }
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadData()
+    }
+
+
+    private fun loadData() {
+        val fullName = preferenceManager.getString(KEY_USER_FULL_NAME)
+        binding.tvNameUser.text = fullName
     }
 
     private fun loadBanner() {
@@ -97,7 +124,7 @@ class HomeFragment : Fragment(), CategoryViewAdapter.mClickCategoryListener {
         binding.isLoadingOfficial = true
         productViewModel.observerCategory().observe(viewLifecycleOwner) {
             listCategory = it
-            mCategoryViewAdapter = CategoryViewAdapter(listCategory,this)
+            mCategoryViewAdapter = CategoryViewAdapter(listCategory, this)
             binding.rcvOfficialCategory.apply {
                 adapter = mCategoryViewAdapter
                 layoutManager =

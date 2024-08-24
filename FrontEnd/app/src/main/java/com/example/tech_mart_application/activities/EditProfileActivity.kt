@@ -171,16 +171,15 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun loadData() {
         val fullName = preferenceManager.getString(Constants.KEY_USER_FULL_NAME)!!
-        val email = preferenceManager.getString(Constants.KEY_USER_EMAIL)!!
-        val address = preferenceManager.getString(KEY_USER_ADDRESS) ?: "123"
-        val phone = preferenceManager.getString(PHONE_NUMBER) ?: "32232323"
+        val email = preferenceManager.getString(KEY_USER_EMAIL)!!
+        val address = preferenceManager.getString(KEY_USER_ADDRESS) ?: "Empty"
+        val phone = preferenceManager.getString(PHONE_NUMBER) ?: "Empty"
         val image = preferenceManager.getString(KEY_USER_IMAGE)!!
         val userDetail = User(
             fullName = fullName,
             email = email,
             address = address,
             phone = phone,
-            role = "User"
         )
         binding.img.setImageBitmap(getUserImage(image))
         binding.user = userDetail

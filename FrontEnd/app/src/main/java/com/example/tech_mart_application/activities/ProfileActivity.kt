@@ -1,8 +1,12 @@
 package com.example.tech_mart_application.activities
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivityProfileBinding
 import com.example.tech_mart_application.models.User
@@ -27,36 +31,50 @@ class ProfileActivity : AppCompatActivity() {
         preferenceManager = PreferenceManager(applicationContext)
         preferenceManager.instance()
 
-        loadData()
 
         binding.btnEdit.setOnClickListener {
-            val intent = Intent(this@ProfileActivity,EditProfileActivity::class.java)
+            val intent = Intent(this@ProfileActivity, EditProfileActivity::class.java)
             startActivity(intent)
         }
 
         binding.btnBack.setOnClickListener {
-           finish()
+            finish()
         }
 
         //Button ChangePassword
         binding.btnChangePassword.setOnClickListener {
-            val intent =Intent(this@ProfileActivity,ChangePasswordActivity::class.java)
+            val intent = Intent(this@ProfileActivity, ChangePasswordActivity::class.java)
             intent.putExtra(KEY_FORGOT_PASSWORD, Constants.OPTION_CHANGE_PASSWORD)
             startActivity(intent)
         }
 
+    }
 
+    override fun onStart() {
+        super.onStart()
+        loadData()
+    }
+
+    private fun getUserImage(url: String): Bitmap {
+        val bytes = Base64.decode(url, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
     }
 
 
-
-    private fun loadData(){
+    private fun loadData() {
         val fullName = preferenceManager.getString(KEY_USER_FULL_NAME)!!
         val email = preferenceManager.getString(KEY_USER_EMAIL)!!
-        val address = preferenceManager.getString(KEY_USER_ADDRESS)?:"123"
-        val phone = preferenceManager.getString(PHONE_NUMBER)?:"32232323"
+        val address = preferenceManager.getString(KEY_USER_ADDRESS) ?: "Empty"
+        val phone = preferenceManager.getString(PHONE_NUMBER) ?: "Empty"
         val image = preferenceManager.getString(KEY_USER_IMAGE)!!
-        val userDetail = User(fullName=fullName,email=email,address=address,phone=phone, role = "User")
-        binding.user= userDetail
+        binding.img.setImageBitmap(getUserImage(image))
+        val userDetail = User(
+            fullName = fullName,
+            email = email,
+            address = address,
+            phone = phone,
+            role = "User"
+        )
+        binding.user = userDetail
     }
 }

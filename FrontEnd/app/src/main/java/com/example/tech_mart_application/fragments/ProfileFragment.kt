@@ -31,7 +31,6 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         preferenceManager = PreferenceManager(requireContext())
         preferenceManager.instance()
-        loadData()
 
         binding.layoutProfile.setOnClickListener {
             val intent = Intent(requireActivity(), ProfileActivity::class.java)
@@ -71,6 +70,11 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        loadData()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,7 +87,6 @@ class ProfileFragment : Fragment() {
         binding.tvEmail.text = preferenceManager.getString(KEY_USER_FULL_NAME)
         val bytes = Base64.decode(preferenceManager.getString(KEY_USER_IMAGE), Base64.DEFAULT)
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        Log.d("MyApp", preferenceManager.getString(KEY_USER_IMAGE)!!)
         Glide.with(requireContext()).load(bitmap)
             .into(binding.avatar)
     }

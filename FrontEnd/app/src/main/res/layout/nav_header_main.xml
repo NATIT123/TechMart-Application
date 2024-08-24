@@ -3,29 +3,27 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/_16sdp"
-    android:background="@drawable/background_gradient_drawer"
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgUser"
-        android:src="@drawable/avatar"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="@dimen/_80sdp"/>
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
+        android:textColor="@color/Black"
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
         android:id="@+id/tvFullName"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="Anh tu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <com.google.android.material.textview.MaterialTextView
+    <TextView
+        android:textColor="@color/Black"
         android:textStyle="bold"
         android:id="@+id/tvEmail"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="Anh tu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
