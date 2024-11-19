@@ -7,13 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.tech_mart_application.MainActivity
-import com.example.tech_mart_application.R
-import com.example.tech_mart_application.Retrofit.ApiService
+import com.example.tech_mart_application.retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivityEditProfileBinding
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.models.User

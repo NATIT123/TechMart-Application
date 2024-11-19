@@ -4,13 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import com.example.tech_mart_application.MainActivity
-import com.example.tech_mart_application.Retrofit.ApiService
+import com.example.tech_mart_application.retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivityForgotPasswordBinding
 import com.example.tech_mart_application.models.DataResponse
-import com.example.tech_mart_application.utils.Constants
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.VERIFICATION_ID
@@ -21,17 +18,11 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
-import com.toxicbakery.bcrypt.Bcrypt
 import io.michaelrocks.libphonenumber.android.NumberParseException
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.File
-import java.io.FileOutputStream
 import java.util.concurrent.TimeUnit
 
 class ForgotPasswordActivity : AppCompatActivity() {

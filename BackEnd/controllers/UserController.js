@@ -1,11 +1,10 @@
-require("../models/UserDetail");
-require("dotenv").config();
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const User = mongoose.model("UserInfo");
+import dotenv from "dotenv";
+dotenv.config();
+import { genSalt, hash as _hash, compare } from "bcrypt";
+import User from "../models/UserDetail.js";
 const saltRounds = parseInt(process.env.saltRounds) || 10;
 
-const registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   const { fullName, address, email, phone, password, image, role } = req.body;
 
   const oldUser = await User.findOne({ email: email });
@@ -13,10 +12,9 @@ const registerUser = async (req, res) => {
   if (oldUser != null) {
     return res.send({ status: "notok", data: "User already registered" });
   } else {
-    await bcrypt
-      .genSalt(saltRounds)
+    await genSalt(saltRounds)
       .then((salt) => {
-        return bcrypt.hash(password, salt);
+        return _hash(password, salt);
       })
       .then((hash) => {
         encryptPassword = hash;
@@ -45,14 +43,13 @@ const registerUser = async (req, res) => {
   }
 };
 
-const resgisterUserByGoogle = async (req, res) => {
+export const resgisterUserByGoogle = async (req, res) => {
   const { fullName, email, phone, password, image } = req.body;
   let encryptPassword;
   try {
-    await bcrypt
-      .genSalt(saltRounds)
+    await genSalt(saltRounds)
       .then((salt) => {
-        return bcrypt.hash(password, salt);
+        return _hash(password, salt);
       })
       .then((hash) => {
         encryptPassword = hash;
@@ -78,7 +75,7 @@ const resgisterUserByGoogle = async (req, res) => {
   }
 };
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -91,7 +88,7 @@ const loginUser = async (req, res) => {
       });
     }
 
-    const match = await bcrypt.compare(password, oldUser.password);
+    const match = await compare(password, oldUser.password);
     if (match) {
       res.send({
         status: "ok",
@@ -108,7 +105,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-const phoneIsExist = async (req, res) => {
+export const phoneIsExist = async (req, res) => {
   try {
     const { phone } = req.query;
     const user = await User.findOne({ phone: phone });
@@ -129,13 +126,13 @@ const phoneIsExist = async (req, res) => {
   }
 };
 
-const changePassword = async (req, res) => {
+export const changePassword = async (req, res) => {
   const { id } = req.params;
   const { password } = req.query;
 
   let encryptPassword;
   try {
-    const ObjectId = mongoose.Types.ObjectId.createFromHexString(id);
+    const ObjectId = Types.ObjectId.createFromHexString(id);
     const user = await User.findOne({
       _id: ObjectId,
     });
@@ -146,10 +143,9 @@ const changePassword = async (req, res) => {
       });
     }
 
-    await bcrypt
-      .genSalt(saltRounds)
+    await genSalt(saltRounds)
       .then((salt) => {
-        return bcrypt.hash(password, salt);
+        return _hash(password, salt);
       })
       .then((hash) => {
         encryptPassword = hash;
@@ -170,7 +166,7 @@ const changePassword = async (req, res) => {
   }
 };
 
-const detailUser = async (req, res) => {
+export const detailUser = async (req, res) => {
   const { email } = req.query;
   try {
     const user = await User.findOne({ email: email });
@@ -196,11 +192,11 @@ const detailUser = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
   const { id } = req.params;
   const { fullName, address, phone, image, email } = req.body;
   try {
-    const ObjectId = mongoose.Types.ObjectId.createFromHexString(id);
+    const ObjectId = Types.ObjectId.createFromHexString(id);
     console.log(id);
     const user = await User.findOne({ _id: ObjectId });
     if (!user) {
@@ -226,14 +222,4 @@ const updateUser = async (req, res) => {
   } catch (err) {
     res.send({ status: "error", data: err.message });
   }
-};
-
-module.exports = {
-  registerUser,
-  loginUser,
-  phoneIsExist,
-  changePassword,
-  detailUser,
-  resgisterUserByGoogle,
-  updateUser,
 };

@@ -1,14 +1,8 @@
 package com.example.tech_mart_application.activities
 
-import android.app.Activity
 import android.content.Intent
-import android.credentials.CredentialManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
-import android.util.Base64
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
@@ -16,7 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
-import com.example.tech_mart_application.Retrofit.ApiService
+import com.example.tech_mart_application.retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivitySignInBinding
 import com.example.tech_mart_application.models.DataDetailResponse
 import com.example.tech_mart_application.models.DataResponse
@@ -43,7 +37,6 @@ import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 

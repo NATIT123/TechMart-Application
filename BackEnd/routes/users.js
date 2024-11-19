@@ -1,6 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const {
+import { Router } from "express";
+const router = Router();
+import {
   registerUser,
   loginUser,
   phoneIsExist,
@@ -8,7 +8,7 @@ const {
   detailUser,
   resgisterUserByGoogle,
   updateUser,
-} = require("../controllers/UserController");
+} from "../controllers/UserController.js";
 
 router.post("/register", registerUser);
 
@@ -24,4 +24,4 @@ router.post("/registerByGoogle", resgisterUserByGoogle);
 
 router.put("/updateUser/:id", updateUser);
 
-module.exports = router;
+export default router;

@@ -8,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
 import android.util.Base64
-import android.util.Log
 import android.util.Patterns
 import android.widget.EditText
 import android.widget.ImageButton
@@ -16,7 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
-import com.example.tech_mart_application.Retrofit.ApiService
+import com.example.tech_mart_application.retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivitySignUpBinding
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.models.User

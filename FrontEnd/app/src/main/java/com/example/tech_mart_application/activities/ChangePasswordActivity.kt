@@ -3,43 +3,28 @@ package com.example.tech_mart_application.activities
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
-import com.example.tech_mart_application.Retrofit.ApiService
+import com.example.tech_mart_application.retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivityChangePasswordBinding
 import com.example.tech_mart_application.models.DataResponse
-import com.example.tech_mart_application.models.User
-import com.example.tech_mart_application.utils.Constants
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_FORGOT_PASSWORD
-import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.OPTION_CHANGE_PASSWORD
 import com.example.tech_mart_application.utils.Constants.Companion.OPTION_FORGOT_PASSWORD
 import com.example.tech_mart_application.utils.PreferenceManager
-import com.google.firebase.Firebase
-import com.google.firebase.auth.AuthCredential
-import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.auth
 import com.toxicbakery.bcrypt.Bcrypt
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.io.IOException
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
-import java.security.SecureRandom
-import java.util.Base64
 
 
 class ChangePasswordActivity : AppCompatActivity() {
