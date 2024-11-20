@@ -127,4 +127,9 @@
     <string name="delivery">Delivery</string>
     <string name="enter_your_message">Enter your message</string>
     <string name="payment">Payment</string>
+    <string name="account">Account</string>
+    <string name="about_us">About Us</string>
+    <string name="refer_friends">Refer Friends</string>
+    <string name="rate_app">Rate App</string>
+    <string name="sign_out">Sign Out</string>
 </resources>

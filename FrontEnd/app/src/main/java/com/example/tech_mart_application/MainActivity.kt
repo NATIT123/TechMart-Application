@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.wishlist -> {
+            R.id.homeFragment -> {
                 Toast.makeText(this@MainActivity, "Test", Toast.LENGTH_SHORT).show()
                 true
             }

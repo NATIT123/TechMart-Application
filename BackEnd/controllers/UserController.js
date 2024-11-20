@@ -3,6 +3,7 @@ dotenv.config();
 import { genSalt, hash as _hash, compare } from "bcrypt";
 import User from "../models/UserDetail.js";
 const saltRounds = parseInt(process.env.saltRounds) || 10;
+import { Types } from "mongoose";
 
 export const registerUser = async (req, res) => {
   const { fullName, address, email, phone, password, image, role } = req.body;

@@ -1,5 +1,6 @@
 package com.example.tech_mart_application.viewModel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,11 +34,9 @@ class ChatViewModel : ViewModel() {
                 messageList.add(MessageModel(message, "user", Date()))
                 messageList.add(MessageModel("Typing....", "model", Date()))
                 val response = chat.sendMessage(message)
-                messageList.removeLast()
                 messageList.add(MessageModel(response.text.toString(), "model", Date()))
                 messageLiveData.postValue(messageList)
             } catch (e: Exception) {
-                messageList.removeLast()
                 messageList.add(MessageModel("Error: ${e.message.toString()}", "model", Date()))
             }
         }

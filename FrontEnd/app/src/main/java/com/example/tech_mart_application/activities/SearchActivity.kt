@@ -18,7 +18,7 @@ class SearchActivity : AppCompatActivity() {
 
 
         binding.searchNow.setOnClickListener {
-            binding.tvSearch.visibility = View.GONE
+            binding.searchNow.queryHint = "";
         }
 
         binding.searchNow.isActivated = true

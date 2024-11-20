@@ -6,7 +6,7 @@ import user from "./routes/users.js";
 dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-const PORT = parseInt(process.env.PORT) || 3001;
+const PORT = parseInt(process.env.PORT) || 3000;
 
 connectDb();
 

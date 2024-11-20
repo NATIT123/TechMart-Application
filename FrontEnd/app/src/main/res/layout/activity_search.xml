@@ -20,6 +20,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/_10sdp"
             android:background="@drawable/background_category_img"
+            android:contentDescription="button"
             android:src="@drawable/baseline_arrow_back_24" />
 
         <TextView
@@ -27,38 +28,36 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="Search"
             android:textColor="@color/LightSlateGray"
             android:textSize="@dimen/_16sdp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
     <RelativeLayout
+        android:gravity="center"
         android:layout_margin="@dimen/_10sdp"
         android:background="@drawable/background_category_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <SearchView
-            android:layout_marginTop="@dimen/_10sdp"
             android:id="@+id/searchNow"
             app:queryHint="Search Now"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/_40sdp"
             android:layout_centerVertical="true"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
-            android:text="Search Now..."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
