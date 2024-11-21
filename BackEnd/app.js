@@ -3,6 +3,7 @@ const app = express();
 import dotenv from "dotenv";
 import connectDb from "./utils/dbConnect.js";
 import user from "./routes/users.js";
+import product from "./routes/products.js";
 dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
 
 ///Handle User
 app.use("/user", user);
+
+app.use("/product", product);
 
 app.listen(PORT, () => {
   console.log(`Running on Port ${PORT} `);

@@ -1,14 +1,8 @@
 import mongoose, { Schema, model } from "mongoose";
 
-const UserDetailSchema = new Schema(
+const CategoryDetailSchema = new Schema(
   {
-    fullName: String,
-    email: String,
-    phone: String,
-    password: String,
-    image: String,
-    address: String,
-    role: { type: String, default: "User" },
+    name: String,
     createdBy: {
       _id: mongoose.Schema.Types.ObjectId,
       email: String,
@@ -29,10 +23,10 @@ const UserDetailSchema = new Schema(
     timestamps: true,
   },
   {
-    collection: "UserInfo",
+    collection: "Category",
   }
 );
 
-const User = model("UserInfo", UserDetailSchema);
+const Category = model("Category", CategoryDetailSchema);
 
-export default User;
+export default Category;
