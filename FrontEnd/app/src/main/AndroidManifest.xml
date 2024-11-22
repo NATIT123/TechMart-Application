@@ -26,28 +26,28 @@
             android:name=".activities.ChatBotActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.SaleStatisticsActivity"
+            android:name=".activities.admin.SaleStatisticsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.CompleteOrderActivity"
+            android:name=".activities.admin.CompleteOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.PendingOrderActivity"
+            android:name=".activities.admin.PendingOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.CreateUserActivity"
+            android:name=".activities.admin.CreateUserActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.OutForDeliveryActivity"
+            android:name=".activities.admin.OutForDeliveryActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.AllProductActivity"
+            android:name=".activities.admin.AllProductActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.AddProductActivity"
+            android:name=".activities.admin.AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.Admin.AdminActivity"
+            android:name=".activities.admin.AdminActivity"
             android:exported="false" />
         <activity
             android:name=".activities.OffersActivity"

@@ -16,7 +16,10 @@ import com.example.tech_mart_application.R
 import com.example.tech_mart_application.activities.HistoryProductActivity
 import com.example.tech_mart_application.activities.OffersActivity
 import com.example.tech_mart_application.activities.ProfileActivity
+import com.example.tech_mart_application.activities.SignInActivity
 import com.example.tech_mart_application.databinding.FragmentProfileBinding
+import com.example.tech_mart_application.utils.Constants
+import com.example.tech_mart_application.utils.Constants.Companion.IS_STARTED
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_IMAGE
 import com.example.tech_mart_application.utils.PreferenceManager
@@ -46,7 +49,11 @@ class ProfileFragment : Fragment() {
                 setCancelable(false)
                 setPositiveButton("Yes") { _, _ ->
                     preferenceManager.clear()
+                    preferenceManager.putBoolean(IS_STARTED, true);
                     requireActivity().finishAffinity()
+                    val intent = Intent(requireActivity(), SignInActivity::class.java)
+                    startActivity(intent)
+                    requireActivity().finish()
                 }
                 setNegativeButton("No") { dialogInterface, _ ->
                     dialogInterface.dismiss()

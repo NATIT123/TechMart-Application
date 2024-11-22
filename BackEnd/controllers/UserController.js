@@ -5,6 +5,8 @@ import User from "../models/UserDetail.js";
 const saltRounds = parseInt(process.env.saltRounds) || 10;
 import { Types } from "mongoose";
 
+import mongoose from "mongoose";
+
 export const getAllUser = async (req, res) => {
   try {
     const users = await User.find({ isDeleted: false });
@@ -157,7 +159,7 @@ export const loginUser = async (req, res) => {
     if (match) {
       res.send({
         status: "ok",
-        data: `Login Succesfully:${oldUser._id.toString()}:${oldUser.fullName.toString()}:${oldUser.image.toString()}:${oldUser.address.toString()}:${oldUser.phone.toString()}`,
+        data: `Login Succesfully:${oldUser._id.toString()}:${oldUser.fullName.toString()}:${oldUser.image.toString()}:${oldUser.address.toString()}:${oldUser.phone.toString()}:${oldUser.role.toString()}`,
       });
     } else {
       return res.send({

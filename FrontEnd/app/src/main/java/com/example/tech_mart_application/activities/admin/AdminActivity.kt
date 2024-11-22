@@ -1,13 +1,13 @@
-package com.example.tech_mart_application.activities.Admin
+package com.example.tech_mart_application.activities.admin
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import com.example.tech_mart_application.R
 import com.example.tech_mart_application.activities.ProfileActivity
+import com.example.tech_mart_application.activities.SignInActivity
 import com.example.tech_mart_application.databinding.ActivityAdminBinding
-import com.example.tech_mart_application.databinding.ActivityMainBinding
+import com.example.tech_mart_application.utils.Constants.Companion.IS_STARTED
 import com.example.tech_mart_application.utils.PreferenceManager
 
 class AdminActivity : AppCompatActivity() {
@@ -58,21 +58,25 @@ class AdminActivity : AppCompatActivity() {
         //Logout
         binding.btnLogout.setOnClickListener {
             val dialog = AlertDialog.Builder(
-                this@AdminActivity)
-                        dialog . apply {
-                    setTitle("Confirm Logout")
-                    setMessage("Are you sure you want to logout?")
-                    setCancelable(false)
-                    setPositiveButton("Yes") { _, _ ->
-                        preferenceManager.clear()
-                        finishAffinity()
-                    }
-                    setNegativeButton("No") { dialogInterface, _ ->
-                        dialogInterface.dismiss()
-                    }
-                    create()
-                    show()
+                this@AdminActivity
+            )
+            dialog.apply {
+                setTitle("Confirm Logout")
+                setMessage("Are you sure you want to logout?")
+                setCancelable(false)
+                setPositiveButton("Yes") { _, _ ->
+                    preferenceManager.clear()
+                    preferenceManager.putBoolean(IS_STARTED, true);finishAffinity()
+                    val intent = Intent(this@AdminActivity, SignInActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
+                setNegativeButton("No") { dialogInterface, _ ->
+                    dialogInterface.dismiss()
+                }
+                create()
+                show()
+            }
         }
 
 
@@ -81,7 +85,5 @@ class AdminActivity : AppCompatActivity() {
             val intent = Intent(this@AdminActivity, PendingOrderActivity::class.java)
             startActivity(intent)
         }
-
-
     }
 }

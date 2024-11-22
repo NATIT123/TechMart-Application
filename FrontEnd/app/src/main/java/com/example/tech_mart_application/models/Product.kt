@@ -16,7 +16,6 @@ class Product(
     var price: Double = 0.0,
     var rating: Double = 0.0,
     var color: String = "a",
-    var createdOn: Date = Date(),
     var vendor: String = "a",
     var quantity: Int = 1,
 )

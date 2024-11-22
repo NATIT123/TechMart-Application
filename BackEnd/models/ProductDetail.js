@@ -30,9 +30,6 @@ const ProductDetailSchema = new Schema(
   {
     timestamps: true,
   },
-  {
-    collection: "Products",
-  }
 );
 
 const Product = model("Products", ProductDetailSchema);

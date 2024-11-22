@@ -1,8 +1,7 @@
-package com.example.tech_mart_application.activities.Admin
+package com.example.tech_mart_application.activities.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivityCreateUserBinding
 
 class CreateUserActivity : AppCompatActivity() {

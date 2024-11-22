@@ -29,7 +29,7 @@ router.get("/detailUser", detailUser);
 
 router.post("/registerByGoogle", resgisterUserByGoogle);
 
-router.patch("/updateUser/:id", updateUser);
+router.put("/updateUser/:id", updateUser);
 
 router.delete("/deleteUser/:id/admin/:adminId", deleteUser);
 

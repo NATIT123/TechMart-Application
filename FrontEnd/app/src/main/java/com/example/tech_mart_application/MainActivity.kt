@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setMessage("Are you sure you want to exist?")
                 setCancelable(false)
                 setPositiveButton("Yes") { _, _ ->
-                    finish()
+                    finishAffinity();
                 }
                 setNegativeButton("No") { dialogInterface, _ ->
                     dialogInterface.dismiss()

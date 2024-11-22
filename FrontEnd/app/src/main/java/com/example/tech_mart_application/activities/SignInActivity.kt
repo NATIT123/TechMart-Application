@@ -10,17 +10,18 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tech_mart_application.MainActivity
 import com.example.tech_mart_application.R
+import com.example.tech_mart_application.activities.admin.AdminActivity
 import com.example.tech_mart_application.retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivitySignInBinding
 import com.example.tech_mart_application.models.DataDetailResponse
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.models.User
-import com.example.tech_mart_application.utils.Constants
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ADDRESS
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ID
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_IMAGE
+import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ROLE
 import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
@@ -99,6 +100,16 @@ class SignInActivity : AppCompatActivity() {
         preferenceManager = PreferenceManager(applicationContext)
         preferenceManager.instance()
 
+
+        preferenceManager.getString(KEY_USER_EMAIL)?.let {
+            val role = preferenceManager.getString(KEY_USER_ROLE);
+            var intent = Intent(this@SignInActivity, AdminActivity::class.java);
+            if (role == "Admin") {
+                intent = Intent(this@SignInActivity, AdminActivity::class.java);
+            }
+            startActivity(intent);
+            finishAffinity();
+        };
 
 
         auth = FirebaseAuth.getInstance()
@@ -217,7 +228,6 @@ class SignInActivity : AppCompatActivity() {
                                 Log.d("MyApp", user.image)
 
 
-                                preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(
                                     KEY_USER_ID, user.id!!
                                 )
@@ -281,8 +291,6 @@ class SignInActivity : AppCompatActivity() {
                                 }
 
 
-
-                                preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(
                                     KEY_USER_ID, body.data.split(':')[1]
                                 )
@@ -300,7 +308,13 @@ class SignInActivity : AppCompatActivity() {
                                     body.data.split(':')[4]
                                 )
                                 preferenceManager.putString(PHONE_NUMBER, body.data.split(':')[5])
-                                val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                                preferenceManager.putString(KEY_USER_ROLE, body.data.split(':')[6])
+                                var intent = Intent(this@SignInActivity, MainActivity::class.java)
+                                val role = body.data.split(':')[6];
+                                if (role == "Admin") {
+                                    intent =
+                                        Intent(this@SignInActivity, AdminActivity::class.java)
+                                }
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 startActivity(intent)
                                 showToast("Login Successfully")
@@ -372,7 +386,6 @@ class SignInActivity : AppCompatActivity() {
                                 preferenceManager.putString(
                                     KEY_USER_ADDRESS, user.address
                                 )
-                                preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(KEY_USER_ID, body.data.split(':')[1])
                                 preferenceManager.putString(
                                     KEY_USER_FULL_NAME,

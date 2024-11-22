@@ -27,12 +27,9 @@ const UserDetailSchema = new Schema(
   },
   {
     timestamps: true,
-  },
-  {
-    collection: "UserInfo",
   }
 );
 
-const User = model("UserInfo", UserDetailSchema);
+const User = model("Users", UserDetailSchema);
 
 export default User;

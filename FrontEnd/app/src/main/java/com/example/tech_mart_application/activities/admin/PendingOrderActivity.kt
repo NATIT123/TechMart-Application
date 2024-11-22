@@ -1,14 +1,11 @@
-package com.example.tech_mart_application.activities.Admin
+package com.example.tech_mart_application.activities.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tech_mart_application.R
 import com.example.tech_mart_application.adapters.PendingOrderViewAdapter
 import com.example.tech_mart_application.databinding.ActivityPendingOrderBinding
 import com.example.tech_mart_application.models.Items
-import com.example.tech_mart_application.models.Order
-import com.example.tech_mart_application.models.Product
 
 class PendingOrderActivity : AppCompatActivity() {
 

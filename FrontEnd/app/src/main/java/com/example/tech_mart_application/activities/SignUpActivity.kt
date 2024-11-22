@@ -19,7 +19,6 @@ import com.example.tech_mart_application.retrofit.ApiService
 import com.example.tech_mart_application.databinding.ActivitySignUpBinding
 import com.example.tech_mart_application.models.DataResponse
 import com.example.tech_mart_application.models.User
-import com.example.tech_mart_application.utils.Constants.Companion.KEY_IS_SIGNED_IN
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_ADDRESS
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_EMAIL
 import com.example.tech_mart_application.utils.Constants.Companion.KEY_USER_FULL_NAME
@@ -237,7 +236,6 @@ class SignUpActivity : AppCompatActivity() {
                                     user.email
                                 );
                                 preferenceManager.putString(KEY_USER_ADDRESS, user.address)
-                                preferenceManager.putBoolean(KEY_IS_SIGNED_IN, true)
                                 preferenceManager.putString(KEY_USER_ID, body.data.split(':')[1])
                                 preferenceManager.putString(
                                     KEY_USER_FULL_NAME,

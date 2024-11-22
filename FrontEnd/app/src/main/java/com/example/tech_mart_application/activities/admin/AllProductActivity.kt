@@ -1,15 +1,12 @@
-package com.example.tech_mart_application.activities.Admin
+package com.example.tech_mart_application.activities.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tech_mart_application.R
 import com.example.tech_mart_application.adapters.AllProductViewAdapter
 import com.example.tech_mart_application.databinding.ActivityAllProductBinding
 import com.example.tech_mart_application.models.Category
 import com.example.tech_mart_application.models.Product
-import kotlin.concurrent.timerTask
 
 class AllProductActivity : AppCompatActivity() {
 
