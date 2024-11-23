@@ -61,4 +61,7 @@ interface ApiService {
     @PUT("user/updateUser/{id}")
     fun updateUser(@Path("id") id: String, @Body user: User): Call<DataResponse>
 
+    @POST("user/addUser/{adminId}")
+    fun createUser(@Path("adminId") adminId: String, @Body user: User): Call<DataResponse>
+
 }

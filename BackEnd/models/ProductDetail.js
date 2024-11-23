@@ -3,7 +3,11 @@ import mongoose, { Schema, model } from "mongoose";
 const ProductDetailSchema = new Schema(
   {
     name: String,
-    image: String,
+    image: [
+      {
+        type: String,
+      },
+    ],
     price: String,
     rate: Number,
     description: String,
@@ -29,7 +33,7 @@ const ProductDetailSchema = new Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 const Product = model("Products", ProductDetailSchema);

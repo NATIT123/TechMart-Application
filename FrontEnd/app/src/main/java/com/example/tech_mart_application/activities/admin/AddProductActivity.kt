@@ -30,8 +30,8 @@ class AddProductActivity : AppCompatActivity() {
                         //do something with the image (save it to some directory or whatever you need to do with it here)
                     }
                 } else if (result.data != null) {
-                    val imagePath: String = result!!.data!!.data!!.path.toString();
-                    Log.d("MyApp",imagePath);
+//                    val imagePath: String = result!!.data!!.data!!.path.toString();
+//                    Log.d("MyApp",imagePath);
                     //do something with the image (save it to some directory or whatever you need to do with it here)
                 }
             }

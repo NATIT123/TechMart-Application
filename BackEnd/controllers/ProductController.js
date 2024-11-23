@@ -21,11 +21,11 @@ export const addProduct = async (req, res) => {
     }
     const ObjectId = Types.ObjectId.createFromHexString(id);
 
-    const product = await product.findOne({ _id: ObjectId });
-    if (!product) {
+    const user = await User.findOne({ _id: ObjectId });
+    if (!user) {
       return res.send({
         status: "notok",
-        data: "product is not exist",
+        data: "user is not exist",
       });
     }
     const { name } = req.body;
@@ -40,8 +40,8 @@ export const addProduct = async (req, res) => {
     await Product.collection.insertOne({
       ...req.body,
       createdBy: {
-        _id: ObjectId,
-        email: product.email,
+        _id: user._id,
+        email: user.email,
       },
     });
     res.send({

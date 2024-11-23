@@ -8,7 +8,12 @@
             name="isLoading"
             type="Boolean" />
 
-        <import type="android.view.View"/>
+
+        <variable
+            name="User"
+            type="com.example.tech_mart_application.models.User" />
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
@@ -62,6 +67,7 @@
                 android:src="@drawable/avatar" />
 
             <EditText
+                android:text="@{User.fullName}"
                 android:id="@+id/edtFullName"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -80,6 +86,7 @@
                 android:paddingEnd="@dimen/_10sdp" />
 
             <EditText
+                android:text="@{User.email}"
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -98,6 +105,7 @@
                 android:paddingEnd="@dimen/_10sdp" />
 
             <EditText
+                android:text="@{User.address}"
                 android:id="@+id/edtAddress"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -116,6 +124,7 @@
                 android:paddingEnd="@dimen/_10sdp" />
 
             <EditText
+                android:text="@{User.phone}"
                 android:id="@+id/edtPhone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -142,7 +151,7 @@
                 android:animateLayoutChanges="true">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSignUp"
+                    android:id="@+id/btnCreateNewUser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/round_button_blue_15"
