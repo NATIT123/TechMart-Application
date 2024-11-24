@@ -27,8 +27,6 @@ const ProductDetailSchema = new Schema(
       _id: mongoose.Schema.Types.ObjectId,
       email: String,
     },
-    createdAt: Date,
-    updatedAt: Date,
     isDeleted: { type: Boolean, default: false },
   },
   {

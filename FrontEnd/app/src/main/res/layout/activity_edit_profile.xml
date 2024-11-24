@@ -102,6 +102,7 @@
                 android:text="@{User.fullName}" />
 
             <EditText
+                android:enabled="false"
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -111,7 +112,7 @@
                 android:background="@drawable/round_back_grey_15"
                 android:drawableStart="@drawable/baseline_email_24"
                 android:drawablePadding="@dimen/_10sdp"
-                android:focusable="true"
+                android:focusable="false"
                 android:hint="@string/email"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"

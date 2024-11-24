@@ -37,10 +37,10 @@ export const addProduct = async (req, res) => {
         data: "Name product is exist",
       });
     }
-    await Product.collection.insertOne({
+    await Product.create({
       ...req.body,
       createdBy: {
-        _id: user._id,
+        _id: ObjectId,
         email: user.email,
       },
     });
@@ -105,7 +105,7 @@ export const updateProduct = async (req, res) => {
         $set: {
           ...req.body,
           updatedBy: {
-            id: admin._id,
+            id: ObjectId._id,
             email: admin.email,
           },
         },
@@ -141,7 +141,7 @@ export const deleteProduct = async (req, res) => {
       {
         ...req.body,
         deletedBy: {
-          _id: admin._id,
+          _id: ObjectId._id,
           email: admin.email,
         },
         isDeleted: true,

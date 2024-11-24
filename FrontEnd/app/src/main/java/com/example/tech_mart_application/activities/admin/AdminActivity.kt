@@ -66,7 +66,8 @@ class AdminActivity : AppCompatActivity() {
                 setCancelable(false)
                 setPositiveButton("Yes") { _, _ ->
                     preferenceManager.clear()
-                    preferenceManager.putBoolean(IS_STARTED, true);finishAffinity()
+                    preferenceManager.putBoolean(IS_STARTED, true);
+                    finishAffinity()
                     val intent = Intent(this@AdminActivity, SignInActivity::class.java)
                     startActivity(intent)
                     finish()

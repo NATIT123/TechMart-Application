@@ -48,15 +48,14 @@ export const addUser = async (req, res) => {
         address,
         role,
         createdBy: {
-          _id: admin.id,
+          _id: ObjectId,
           email: admin.email,
         },
       };
-      const savedUser = await User.collection.insertOne(userObject);
-      console.log(savedUser.insertedId.toString());
+      const savedUser = await User.create(userObject);
       res.send({
         status: "ok",
-        data: `User created successfully:${savedUser.insertedId.toString()}`,
+        data: `User created successfully:${savedUser._id.toString()}`,
       });
     } catch (err) {
       res.send({ status: "error", data: err.toString() });
@@ -91,8 +90,7 @@ export const registerUser = async (req, res) => {
         address,
         role,
       };
-      const savedUser = await User.collection.insertOne(userObject);
-      console.log(savedUser.insertedId.toString());
+      const savedUser = await User.create(userObject);
       res.send({
         status: "ok",
         data: `User created successfully:${savedUser.insertedId.toString()}`,
@@ -131,11 +129,10 @@ export const resgisterUserByGoogle = async (req, res) => {
       image,
       address,
     };
-    const savedUser = await User.collection.insertOne(userObject);
-    console.log(savedUser.insertedId.toString());
+    const savedUser = await User.create(userObject);
     res.send({
       status: "ok",
-      data: `User created successfully:${savedUser.insertedId.toString()}`,
+      data: `User created successfully:${savedUser._id.toString()}`,
     });
   } catch (err) {
     res.send({ status: "error", data: err.toString() });
@@ -321,7 +318,7 @@ export const deleteUser = async (req, res) => {
       {
         ...req.body,
         deletedBy: {
-          _id: admin._id,
+          _id: ObjectId,
           email: admin.email,
         },
         isDeleted: true,

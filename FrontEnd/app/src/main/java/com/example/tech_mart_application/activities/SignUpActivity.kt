@@ -243,6 +243,7 @@ class SignUpActivity : AppCompatActivity() {
                                 )
                                 preferenceManager.putString(PHONE_NUMBER, user.phone)
                                 preferenceManager.putString(KEY_USER_IMAGE, user.image)
+                                isLoading(false);
                                 val intent = Intent(this@SignUpActivity, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 startActivity(intent)

@@ -3,37 +3,56 @@ package com.example.tech_mart_application.activities.admin
 import android.R.attr.data
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tech_mart_application.adapters.ImageViewAdapter
 import com.example.tech_mart_application.databinding.ActivityAddProductBinding
+import org.w3c.dom.ls.LSInput
 import java.io.ByteArrayOutputStream
+import java.io.FileNotFoundException
 
 
-class AddProductActivity : AppCompatActivity() {
+class AddProductActivity : AppCompatActivity(), ImageViewAdapter.OnClickItemListener {
 
     private lateinit var binding: ActivityAddProductBinding
     private lateinit var encodeImage: String
-    var imagesEncodedList: List<String>? = null
-    var imageEncoded: String? = null
+    private val imagesEncodedList = mutableListOf<Bitmap>();
+    private val listImage = mutableListOf<String>()
+    private lateinit var mImageViewAdapter: ImageViewAdapter
     private val pickImage =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 if (result.data?.clipData != null) {
                     val count: Int = result.data!!.clipData!!.itemCount;
+                    imagesEncodedList.clear();
+                    listImage.clear();
                     for (i in 0 until count) {
                         val imageUri: Uri = result!!.data!!.clipData!!.getItemAt(i).uri;
-                        Log.d("MyApp",imageUri.toString());
-                        //do something with the image (save it to some directory or whatever you need to do with it here)
+                        val inputStream = imageUri.let { contentResolver.openInputStream(it) }
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        encodeImage = encodeImage(bitmap)
+                        listImage.add(encodeImage);
+                        imagesEncodedList.add(bitmap);
                     }
                 } else if (result.data != null) {
-//                    val imagePath: String = result!!.data!!.data!!.path.toString();
-//                    Log.d("MyApp",imagePath);
-                    //do something with the image (save it to some directory or whatever you need to do with it here)
+                    val imageUri = result.data!!.data
+                    try {
+                        val inputStream = imageUri?.let { contentResolver.openInputStream(it) }
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        encodeImage = encodeImage(bitmap)
+                        listImage.add(encodeImage);
+                        imagesEncodedList.add(bitmap);
+                    } catch (e: FileNotFoundException) {
+                        e.printStackTrace()
+                    }
                 }
+                loadImage(imagesEncodedList)
             }
         }
 
@@ -51,7 +70,6 @@ class AddProductActivity : AppCompatActivity() {
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
             intent.setAction(Intent.ACTION_GET_CONTENT);
             pickImage.launch(intent)
-//            startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1)
         }
 
     }
@@ -64,5 +82,18 @@ class AddProductActivity : AppCompatActivity() {
         previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
         val bytes = byteArrayOutputStream.toByteArray()
         return Base64.encodeToString(bytes, Base64.DEFAULT)
+    }
+
+    private fun loadImage(listImage: MutableList<Bitmap>) {
+        mImageViewAdapter = ImageViewAdapter(listImage, this)
+        binding.rcvImage.apply {
+            adapter = mImageViewAdapter
+            layoutManager =
+                LinearLayoutManager(this@AddProductActivity, LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
+
+    override fun onRemoveItem(position: Int) {
+
     }
 }

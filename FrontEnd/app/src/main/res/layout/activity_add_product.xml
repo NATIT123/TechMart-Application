@@ -95,7 +95,7 @@
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingEnd="@dimen/_10sdp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/edtDescription"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
@@ -103,15 +103,15 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@drawable/round_back_grey_15"
-                    android:drawableStart="@drawable/baseline_location_city_24"
                     android:drawablePadding="@dimen/_10sdp"
                     android:focusable="true"
                     android:hint="Description"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp" />
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:drawableStartCompat="@drawable/baseline_location_city_24"
+                    tools:ignore="TextViewEdits" />
 
                 <EditText
                     android:id="@+id/edtPhone"
@@ -138,7 +138,23 @@
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@drawable/round_back_grey_15"
-                    android:drawableStart="@drawable/baseline_local_phone_24"
+                    android:drawableStart="@drawable/baseline_precision_manufacturing_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:focusable="true"
+                    android:hint="Rate"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/round_back_grey_15"
+                    android:drawableStart="@drawable/baseline_precision_manufacturing_24"
                     android:drawablePadding="@dimen/_10sdp"
                     android:focusable="true"
                     android:hint="Vendor"
@@ -172,6 +188,7 @@
                     app:cardCornerRadius="@dimen/_15sdp">
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcvImage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/_10sdp" />

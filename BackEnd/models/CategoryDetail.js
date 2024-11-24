@@ -3,6 +3,7 @@ import mongoose, { Schema, model } from "mongoose";
 const CategoryDetailSchema = new Schema(
   {
     name: String,
+    description: String,
     createdBy: {
       _id: mongoose.Schema.Types.ObjectId,
       email: String,
@@ -15,8 +16,6 @@ const CategoryDetailSchema = new Schema(
       _id: mongoose.Schema.Types.ObjectId,
       email: String,
     },
-    createdAt: Date,
-    updatedAt: Date,
     isDeleted: { type: Boolean, default: false },
   },
   {

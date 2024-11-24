@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
+import android.util.Patterns
 import android.widget.Toast
 import com.example.tech_mart_application.R
 import com.example.tech_mart_application.databinding.ActivityCreateUserBinding
@@ -22,6 +23,8 @@ import com.example.tech_mart_application.utils.Constants.Companion.PHONE_NUMBER
 import com.example.tech_mart_application.utils.Constants.Companion.SALT_ROUNDS
 import com.example.tech_mart_application.utils.PreferenceManager
 import com.toxicbakery.bcrypt.Bcrypt
+import io.michaelrocks.libphonenumber.android.NumberParseException
+import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,32 +42,38 @@ class CreateUserActivity : AppCompatActivity() {
         binding = ActivityCreateUserBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        preferenceManager = PreferenceManager(applicationContext)
+        preferenceManager.instance()
+
         binding.btnBack.setOnClickListener {
             finish()
         }
 
         //Create new User
         binding.btnCreateNewUser.setOnClickListener {
-            binding.isLoading = true
-            val image =
-                Uri.parse("android.resource://${packageName}/${R.drawable.avatar}")
-            contentResolver.openInputStream(image)
-            val id = preferenceManager.getString(KEY_USER_ID)
-            val fullName = binding.edtFullName.text.toString()
-            val address = binding.edtAddress.text.toString()
-            val email = binding.edtEmail.text.toString()
-            val phone = binding.edtPhone.text.toString()
-            addUser(
-                id!!,
-                User(
-                    fullName = fullName,
-                    address = address,
-                    image = encodeImage(getImageDefault(image)),
-                    phone = phone,
-                    email = email,
-                    password = "Password123"
-                )
-            )
+            isValidCreateNewUserDetails();
+        }
+    }
+
+    private fun createNewUser() {
+        isLoading(true)
+        val image =
+            Uri.parse("android.resource://${packageName}/${R.drawable.avatar}")
+        contentResolver.openInputStream(image)
+
+        val user = User(
+            email = binding.edtEmail.text.toString().trim(),
+            phone = binding.edtPhone.text.toString().trim(),
+            fullName = binding.edtFullName.text.toString().trim(),
+            image = encodeImage(getImageDefault(image)),
+            address = binding.edtAddress.text.toString().trim(),
+            role = "User"
+        )
+
+        //Handle ApiRegister
+        preferenceManager.getString(KEY_USER_ID)?.let {
+            addUser(it, user);
+            isLoading(false)
         }
     }
 
@@ -94,6 +103,33 @@ class CreateUserActivity : AppCompatActivity() {
     private fun handleDataError(dataResponse: DataResponse) {
         isLoading(false)
         showToast(dataResponse.data)
+    }
+
+
+    private fun isValidCreateNewUserDetails(): Boolean {
+        if (binding.edtFullName.text.toString().trim().isEmpty()) {
+            showToast("Please Enter fullName")
+            return false
+        } else if (binding.edtEmail.text.toString().trim().isEmpty()) {
+            showToast("Please Enter email")
+            return false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.edtEmail.text.toString())
+                .matches()
+        ) {
+            showToast("Email not valid")
+            return false
+        } else if (binding.edtAddress.text.toString().trim().isEmpty()) {
+            showToast("Please Enter Address")
+            return false
+        } else if (binding.edtPhone.text.toString().trim().isEmpty()) {
+            showToast("Please Enter phone")
+            return false
+        } else if (!isValidPhoneNumber(binding.edtPhone.text.toString())) {
+            showToast("Phone is not valid")
+            return false
+        }
+        createNewUser()
+        return true
     }
 
     private fun addUser(adminId: String, user: User) {
@@ -128,5 +164,15 @@ class CreateUserActivity : AppCompatActivity() {
                 showToast(error.message.toString())
             }
         })
+    }
+
+    private fun isValidPhoneNumber(phoneNumber: String): Boolean {
+        val phoneNumberUtil = PhoneNumberUtil.createInstance(applicationContext)
+        return try {
+            phoneNumberUtil.parse(phoneNumber, "VN")
+            true
+        } catch (e: NumberParseException) {
+            false
+        }
     }
 }
